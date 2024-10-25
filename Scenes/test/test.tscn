@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=4 uid="uid://b1osd6rlyak8w"]
+
+[ext_resource type="TileSet" uid="uid://bptlguhc8j34v" path="res://Data/debug_tileset.tres" id="1_w54tg"]
+[ext_resource type="PackedScene" uid="uid://dy86jtt6pw10h" path="res://Scenes/Characters/test_character.tscn" id="2_0gnyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxf75"]
+size = Vector2(432, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldj0j"]
+size = Vector2(432, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbkku"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxhrd"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duo6s"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1scw"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axu7p"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf3us"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t454e"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27be3"]
+size = Vector2(16, 16)
+
+[node name="test" type="Node2D"]
+
+[node name="ground and walls" type="StaticBody2D" parent="."]
+
+[node name="ground" type="TileMapLayer" parent="ground and walls"]
+tile_map_data = PackedByteArray("AAAAAA4AAAAEAAIAAAABAA4AAAAEAAIAAAACAA4AAAAEAAIAAAADAA4AAAAEAAIAAAAEAA4AAAAEAAIAAAAFAA4AAAAEAAIAAAAGAA4AAAAEAAIAAAAHAA4AAAAEAAIAAAAIAA4AAAAEAAIAAAAJAA4AAAAEAAIAAAAKAA4AAAAEAAIAAAALAA4AAAAEAAIAAAAMAA4AAAAEAAIAAAANAA4AAAAEAAIAAAAOAA4AAAAEAAIAAAAPAA4AAAAEAAIAAAAQAA4AAAAEAAIAAAARAA4AAAAEAAIAAAASAA4AAAAEAAIAAAATAA4AAAAEAAIAAAAUAA4AAAAEAAIAAAAVAA4AAAAEAAIAAAAWAA4AAAAEAAIAAAAXAA4AAAAEAAIAAAAYAA4AAAAEAAIAAAAZAA4AAAAEAAIAAAAaAA4AAAAEAAIAAAAAAA0AAAAEAAIAAAAAAAwAAAAEAAIAAAAAAAsAAAAEAAIAAAAAAAoAAAAEAAIAAAAAAAkAAAAEAAIAAAAAAAgAAAAEAAIAAAAAAAcAAAAEAAIAAAAAAAYAAAAEAAIAAAAAAAUAAAAEAAIAAAAAAAQAAAAEAAIAAAAAAAMAAAAEAAIAAAAAAAIAAAAEAAIAAAAAAAEAAAAEAAIAAAAAAAAAAAAEAAIAAAABAAAAAAAEAAIAAAACAAAAAAAEAAIAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAIAAAAGAAAAAAAEAAIAAAAHAAAAAAAEAAIAAAAIAAAAAAAEAAIAAAAJAAAAAAAEAAIAAAAKAAAAAAAEAAIAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAIAAAAOAAAAAAAEAAIAAAAPAAAAAAAEAAIAAAAQAAAAAAAEAAIAAAARAAAAAAAEAAIAAAASAAAAAAAEAAIAAAAXAAAAAAAEAAIAAAAYAAAAAAAEAAIAAAAZAAAAAAAEAAIAAAAaAAAAAAAEAAIAAAAWAAAAAAAEAAIAAAAVAAAAAAAEAAIAAAAUAAAAAAAEAAIAAAATAAAAAAAEAAIAAAAaAAEAAAAEAAIAAAAaAAIAAAAEAAIAAAAaAAMAAAAEAAIAAAAaAAQAAAAEAAIAAAAaAAUAAAAEAAIAAAAaAAYAAAAEAAIAAAAaAAcAAAAEAAIAAAAaAAgAAAAEAAIAAAAaAAkAAAAEAAIAAAAaAAoAAAAEAAIAAAAaAAwAAAAEAAIAAAAaAA0AAAAEAAIAAAAaAAsAAAAEAAIAAAABAAwAAAAEAAAAAAABAA0AAAAEAAEAAAACAAwAAAAFAAAAAAACAA0AAAAFAAEAAAAYAAwAAAAEAAAAAAAYAA0AAAAEAAEAAAAZAAwAAAAFAAAAAAAZAA0AAAAFAAEAAAASAA0AAAAAAAUAAAATAA0AAAABAAUAAAAUAAwAAAACAAQAAAAUAA0AAAACAAUAAAAVAAwAAAADAAQAAAAVAA0AAAADAAUAAAAFAAwAAAAAAAgAAAAFAA0AAAAAAAkAAAAGAA0AAAABAAkAAAAOAAsAAAAEAAIAAAAPAAsAAAAEAAIAAAAKAAkAAAAEAAIAAAALAAkAAAAEAAIAAAAJAA0AAAAEAAIAAAAIAAwAAAAEAAIAAAA=")
+tile_set = ExtResource("1_w54tg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216, 8)
+shape = SubResource("RectangleShape2D_yxf75")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216, 232)
+shape = SubResource("RectangleShape2D_ldj0j")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(8, 120)
+shape = SubResource("RectangleShape2D_gbkku")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(424, 120)
+shape = SubResource("RectangleShape2D_bxhrd")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(32, 208)
+shape = SubResource("RectangleShape2D_duo6s")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(176, 152)
+shape = SubResource("RectangleShape2D_u1scw")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(240, 184)
+shape = SubResource("RectangleShape2D_axu7p")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(400, 208)
+shape = SubResource("RectangleShape2D_wf3us")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ground and walls"]
+polygon = PackedVector2Array(112, 224, 80, 224, 80, 192)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ground and walls"]
+polygon = PackedVector2Array(352, 192, 352, 224, 287, 224)
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(152, 216)
+shape = SubResource("RectangleShape2D_t454e")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(136, 200)
+shape = SubResource("RectangleShape2D_27be3")
+
+[node name="TestCharacter" parent="." instance=ExtResource("2_0gnyy")]
+position = Vector2(207, 222)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(216, 120)
