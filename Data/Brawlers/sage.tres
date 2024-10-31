@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BrawlerData" load_steps=2 format=3 uid="uid://ct4vj440kuqob"]
+
+[ext_resource type="Script" path="res://Code/Characters/brawler_data.gd" id="1_40yl5"]
+
+[resource]
+script = ExtResource("1_40yl5")
+id = ""
+starting_life = -1
+starting_hp = 1
+friction = 700.0
+acceleration = 1100.0
+speed = 200.0
+starting_jump_count = 2
+starting_time_to_peak = 0.3
+starting_time_to_descend = 0.5
+starting_jump_height = 32
+attacks = {
+"attack1": {
+"state": 4
+}
+}

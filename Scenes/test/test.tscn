@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://b1osd6rlyak8w"]
 
 [ext_resource type="TileSet" uid="uid://bptlguhc8j34v" path="res://Data/debug_tileset.tres" id="1_w54tg"]
-[ext_resource type="PackedScene" uid="uid://dy86jtt6pw10h" path="res://Scenes/Characters/test_character.tscn" id="2_0gnyy"]
+[ext_resource type="PackedScene" uid="uid://dy86jtt6pw10h" path="res://Scenes/Characters/swordswoman.tscn" id="2_0gnyy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxf75"]
 size = Vector2(432, 16)

@@ -1,1 +1,3 @@
-class_name AttackAction extends CharacterAction
+class_name AttackAction extends BrawlerAction
+
+
