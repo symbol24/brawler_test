@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2yfuxiu3ef7y"]
+
+[ext_resource type="Script" path="res://Code/Utilities/Managers/spawn_manager.gd" id="1_7rmas"]
+[ext_resource type="Script" path="res://Code/Characters/brawler_data.gd" id="2_oy041"]
+[ext_resource type="Resource" uid="uid://7cvrkxher4qc" path="res://Data/Brawlers/swordswoman.tres" id="3_x2up8"]
+
+[node name="SpawnManager" type="Node2D"]
+script = ExtResource("1_7rmas")
+brawler_datas = Array[ExtResource("2_oy041")]([ExtResource("3_x2up8")])

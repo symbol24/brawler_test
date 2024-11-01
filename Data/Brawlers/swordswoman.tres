@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_rlpl7")
 id = "swordswoman"
+path = "res://Scenes/Characters/swordswoman.tscn"
 starting_life = -1
 starting_hp = 1
 friction = 700.0

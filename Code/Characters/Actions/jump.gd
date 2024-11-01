@@ -61,13 +61,13 @@ var precharge_timer:float = 0.0:
 var precharge_wait:bool = false
 
 
-func _input(_event: InputEvent) -> void:
-	if can_action and button != "":
+func _input(event: InputEvent) -> void:
+	if _get_can_action(event):
 		if parent.velocity.x != 0.0 and not precharge_wait and not jump_charging:
-			if _event.is_action_released(button):
+			if event.is_action_released(button):
 				_trigger_action()
 		else:
-			if _event.is_action_pressed(button):
+			if event.is_action_pressed(button):
 				if not precharge_wait and not jump_charging:
 					precharge_wait = true
 			
@@ -75,7 +75,7 @@ func _input(_event: InputEvent) -> void:
 					parent.set_state(Brawler.State.PREJUMP)
 					jump_charging = true
 			
-			if _event.is_action_released(button):
+			if event.is_action_released(button):
 				jump_charging = false
 				precharge_wait = false
 				parent.can_move_on_x = true

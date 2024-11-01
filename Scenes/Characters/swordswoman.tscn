@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dy86jtt6pw10h"]
+[gd_scene load_steps=23 format=3 uid="uid://dy86jtt6pw10h"]
 
 [ext_resource type="Script" path="res://Code/Characters/brawler.gd" id="1_l1sbu"]
 [ext_resource type="Texture2D" uid="uid://we6qleae0c6n" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite without VFX.png" id="1_lpun4"]
-[ext_resource type="Resource" uid="uid://7cvrkxher4qc" path="res://Data/Brawlers/swordswoman.tres" id="2_fecj8"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/move.gd" id="3_m4dfj"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/jump.gd" id="4_xp27b"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/sw_attack.gd" id="5_plkbi"]
@@ -794,8 +793,8 @@ _data = {
 }
 
 [node name="TestCharacter" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_l1sbu")
-brawler_data = ExtResource("2_fecj8")
 
 [node name="sprite" type="Sprite2D" parent="." groups=["flip"]]
 unique_name_in_owner = true
@@ -810,7 +809,6 @@ shape = SubResource("CapsuleShape2D_cheb5")
 
 [node name="move" type="Node2D" parent="."]
 script = ExtResource("3_m4dfj")
-inputs = Array[String](["left", "right"])
 
 [node name="jump" type="Node2D" parent="."]
 script = ExtResource("4_xp27b")

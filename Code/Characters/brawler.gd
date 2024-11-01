@@ -17,12 +17,12 @@ enum State {
 		}
 
 
-@export var brawler_data:BrawlerData
 @onready var sprite: Sprite2D = %sprite
 
 @onready var animator: AnimationPlayer = %animator
 
 var data:BrawlerData
+var player_data:PlayerData
 
 var current_state:State = State.IDLE:
 	set(value):
@@ -38,7 +38,6 @@ var can_flip:bool = true
 
 
 func _ready() -> void:
-	data = brawler_data.get_duplicate()
 	if not animator.is_node_ready():
 		await animator.ready
 	animator.animation_finished.connect(_animation_end)
@@ -50,6 +49,11 @@ func _process(_delta: float) -> void:
 	if can_flip: flipped = _flip(to_flip, flipped)
 	if not can_move_on_x: velocity.x = 0
 	move_and_slide()
+
+
+func set_data(_data:BrawlerData, _player_data:PlayerData) -> void:
+	data = _data.get_duplicate()
+	player_data = _player_data
 
 
 func set_velocity_x(value:float = 0.0) -> void:

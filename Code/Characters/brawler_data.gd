@@ -2,6 +2,9 @@ class_name BrawlerData extends Resource
 
 
 @export var id:String
+@export var path:String
+
+@export_group("Health")
 @export var starting_life:int = -1
 @export var starting_hp:int = 1
 
@@ -23,7 +26,6 @@ class_name BrawlerData extends Resource
 									"state":Brawler.State.ATTACK1,
 									}
 								}
-
 
 # MOVE
 var speed:float:

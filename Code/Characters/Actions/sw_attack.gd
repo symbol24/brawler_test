@@ -22,7 +22,7 @@ var sprite_x_pos:float
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(button):
+	if _get_can_action(event) and event.is_action_pressed(button):
 		if Input.get_axis("up", "down") > DOWNAXISNEEDED:
 			if attack2_name == "": Debug.warning("player ", parent.name, " attack2_name is empty.")
 			delay = parent.data.get_attack_value(attack2_name, "post_attack_delay")

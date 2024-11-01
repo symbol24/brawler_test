@@ -1,8 +1,6 @@
 class_name Move extends BrawlerAction
 
 
-@export var inputs:Array[String]
-
 var display_debug:bool = true
 
 var friction:float:
@@ -15,11 +13,15 @@ var speed:float:
 var direction:float = 0.0
 
 
+func _input(event: InputEvent) -> void:
+	if _get_can_move(event):
+		direction = event.axis_value
+
+
 func _process(delta: float) -> void:
-	direction = Input.get_axis(inputs[0], inputs[1])
 	parent.set_velocity_x(_get_new_x(parent.velocity.x, direction, delta))
 	_state_check()
-	_debug_move_output()
+	if display_debug: _debug_move_output()
 
 
 func _get_new_x(_old_x:float = 0.0, _direction:float = 0.0, delta:float = 0.0) -> float:
@@ -29,7 +31,7 @@ func _get_new_x(_old_x:float = 0.0, _direction:float = 0.0, delta:float = 0.0) -
 	if _direction > 0.1 or _direction < -0.1:
 		new_x = move_toward(_old_x, _direction * speed * air_multi, delta * acceleration)
 	elif _direction < 0.1 and _direction > -0.1:
-		new_x = move_toward(_old_x, 0, delta * acceleration)
+		new_x = move_toward(_old_x, 0, delta * friction)
 
 	return new_x
 
@@ -46,3 +48,7 @@ func _debug_move_output() -> void:
 	to_send = "velocity.x: %10.2f \n" % parent.velocity.x
 	to_send += "velocity.y: %10.2f" % parent.velocity.y
 	Signals.DebugUpdateBoxText.emit("move", to_send)
+
+
+func _get_can_move(_event:InputEvent) -> bool:
+	return parent and parent.data and _event.device == parent.player_data.device and _event is InputEventJoypadMotion and (_event.is_action("left") or _event.is_action("right"))
