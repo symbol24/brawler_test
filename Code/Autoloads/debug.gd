@@ -10,7 +10,8 @@ var commands:Array[String] = [
 							"!DisplayUi",
 							"!load",
 							"!popup",
-							"!textpopup"
+							"!textpopup",
+							"!displayplayerinfo",
 							]
 var active:bool = true
 var null_text := "<null>"
@@ -20,13 +21,13 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
-func _process(_delta: float) -> void:
-	if active:
-		var axes:Vector2 = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-		var to_send:String = "X axis input: %10.2f" % axes.x
-		to_send += "\n"
-		to_send += "Y axis input: %10.2f" % axes.y
-		Signals.DebugUpdateBoxText.emit("axes", to_send)
+#func _process(_delta: float) -> void:
+#	if active:
+#		var axes:Vector2 = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+#		var to_send:String = "X axis input: %10.2f" % axes.x
+#		to_send += "\n"
+#		to_send += "Y axis input: %10.2f" % axes.y
+#		Signals.DebugUpdateBoxText.emit("axes", to_send)
 
 
 func stringify(_value1 = "", _value2 = "", _value3 = "", _value4 = "", _value5 = "", _value6 = "", _value7 = "", _value8 = "", _value9 = "", _value10 = "", _value11 = "", _value12 = "", _value13 = "", _value14 = "", _value15 = "", _value16 = "", _value17 = "", _value18 = "", _value19 = "", _value20 = "") -> String:
@@ -62,13 +63,13 @@ func log(_value1 = "", _value2 = "", _value3 = "", _value4 = "", _value5 = "", _
 
 func error(_value1 = "", _value2 = "", _value3 = "", _value4 = "", _value5 = "", _value6 = "", _value7 = "", _value8 = "", _value9 = "", _value10 = "", _value11 = "", _value12 = "", _value13 = "", _value14 = "", _value15 = "", _value16 = "", _value17 = "", _value18 = "", _value19 = "", _value20 = ""):
 	var text = stringify(_value1, _value2, _value3, _value4, _value5, _value6, _value7, _value8, _value9, _value10, _value11, _value12, _value13, _value14, _value15, _value16, _value17, _value18, _value19, _value20)
-	Signals.DebugError.emit("[color=red]" + text + "[/color]")
+	Signals.DebugPrint.emit("[color=red]" + text + "[/color]")
 	push_error(text)
 	
 
 func warning(_value1 = "", _value2 = "", _value3 = "", _value4 = "", _value5 = "", _value6 = "", _value7 = "", _value8 = "", _value9 = "", _value10 = "", _value11 = "", _value12 = "", _value13 = "", _value14 = "", _value15 = "", _value16 = "", _value17 = "", _value18 = "", _value19 = "", _value20 = ""):
 	var text = stringify(_value1, _value2, _value3, _value4, _value5, _value6, _value7, _value8, _value9, _value10, _value11, _value12, _value13, _value14, _value15, _value16, _value17, _value18, _value19, _value20)
-	Signals.DebugWarning.emit("[color=yellow]" + text + "[/color]")
+	Signals.DebugPrint.emit("[color=yellow]" + text + "[/color]")
 	push_warning(text)
 
 
@@ -96,5 +97,13 @@ func do_command(_inputs:Array[String] = []):
 			Debug.log("Not implemented yet")
 		"!textpopup":
 			Debug.log("Not implemented yet")
+		"!displayplayerinfo":
+			if _inputs.is_empty():
+				Debug.warning("!displayplayerinfo requires the id of the player to display: example !displayplayerinfo 1")
+			else:
+				if _inputs[0] == "0" or int(_inputs[0]):
+					Signals.DebugDisplayInfo.emit(int(_inputs[0]), true)
+				else:
+					Debug.warning("!displayplayerinfo requires the id of the player to display: example !displayplayerinfo 1")
 		_:
-			Debug.log("Command unrecognized")
+			Debug.log("Use !commands to see all available commands")

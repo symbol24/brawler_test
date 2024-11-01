@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn1ns028ruc23"]
+
+[ext_resource type="Script" path="res://Code/Debug/debug_player_info.gd" id="1_e2607"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo0di"]
+bg_color = Color(0.6, 0.6, 0.6, 0.258824)
+
+[node name="display_debug_boxes" type="Control"]
+custom_minimum_size = Vector2(84, 84)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 84.0
+offset_bottom = 84.0
+script = ExtResource("1_e2607")
+
+[node name="state" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+offset_right = 84.0
+offset_bottom = 10.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "current state:"
+scroll_active = false
+
+[node name="axes" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 20)
+layout_mode = 2
+offset_top = 11.0
+offset_right = 84.0
+offset_bottom = 31.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "output_movement
+"
+scroll_active = false
+
+[node name="output_movement" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 20)
+layout_mode = 2
+offset_top = 32.0
+offset_right = 84.0
+offset_bottom = 52.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "output_movement
+"
+scroll_active = false
+
+[node name="jump" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 0
+offset_top = 53.0
+offset_right = 84.0
+offset_bottom = 63.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "jump info"
+scroll_active = false
+
+[node name="jump2" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 0
+offset_top = 63.0
+offset_right = 84.0
+offset_bottom = 73.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "jump info"
+scroll_active = false
+
+[node name="attacks" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 0
+offset_top = 74.0
+offset_right = 84.0
+offset_bottom = 84.0
+theme_override_font_sizes/normal_font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_fo0di")
+bbcode_enabled = true
+text = "last attack:"
+scroll_active = false

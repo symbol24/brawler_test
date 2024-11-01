@@ -226,4 +226,4 @@ func _get_state_as_string() -> String:
 # DEBUG SECTION
 
 func _debug_state_update() -> void:
-	Signals.DebugUpdateBoxText.emit("state", "State: " + _get_state_as_string())
+	Signals.DebugUpdateBoxText.emit(player_data.player_id, "state", "State: " + _get_state_as_string())

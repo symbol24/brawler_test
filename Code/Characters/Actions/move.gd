@@ -47,7 +47,7 @@ func _debug_move_output() -> void:
 	var to_send:String = ""
 	to_send = "velocity.x: %10.2f \n" % parent.velocity.x
 	to_send += "velocity.y: %10.2f" % parent.velocity.y
-	Signals.DebugUpdateBoxText.emit("move", to_send)
+	Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "move", to_send)
 
 
 func _get_can_move(_event:InputEvent) -> bool:

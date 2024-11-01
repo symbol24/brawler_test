@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://ypvtmkshfvsp"]
+
+[ext_resource type="Script" path="res://Code/Debug/debug_command_menu.gd" id="1_e2607"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5m8t"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0554776, 0.0596172, 0.0782683, 0.647059)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439049, 0.439049, 0.439049, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1i8y"]
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.065795, 0.0612509, 0.0376051, 0.647059)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.439049, 0.439049, 0.439049, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtq1m"]
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.065795, 0.0612509, 0.0376051, 0.647059)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.439049, 0.439049, 0.439049, 1)
+border_blend = true
+
+[node name="debug_command_menu" type="VBoxContainer"]
+visible = false
+theme_override_constants/separation = 0
+script = ExtResource("1_e2607")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l5m8t")
+
+[node name="output" type="RichTextLabel" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 6
+bbcode_enabled = true
+scroll_following = true
+shortcut_keys_enabled = false
+
+[node name="input" type="LineEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_direction = 2
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 6
+theme_override_styles/focus = SubResource("StyleBoxFlat_f1i8y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mtq1m")
+placeholder_text = "   !commands for commands"
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false

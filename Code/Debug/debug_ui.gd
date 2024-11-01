@@ -1,22 +1,20 @@
 class_name DebugUi extends PanelContainer
 
 
-@onready var debug_command_menu: VBoxContainer = %debug_command_menu
-@onready var output_movement: RichTextLabel = %output_movement
-@onready var state: RichTextLabel = %state
-@onready var jump: RichTextLabel = %jump
-@onready var jump_2: RichTextLabel = %jump2
-@onready var attacks: RichTextLabel = %attacks
-@onready var output: RichTextLabel = %output
-@onready var input: LineEdit = %input
-@onready var axes: RichTextLabel = %axes
+const PLAYERINFO:String = "res://Scenes/Debug/debug_player_info.tscn"
+
+
+@onready var debug_command_menu: DebugCommandsMenu = %debug_command_menu
+@onready var info_control: Control = %info_control
+
 
 var can_toggle_cm:bool = true
+var infos:Array[DebugPlayerInfo] = []
 
 
 func _input(event: InputEvent) -> void:
 	if not get_tree().paused and can_toggle_cm and event.is_action_pressed("debug"):
-		_toggle_debug_command_menu()
+		debug_command_menu.toggle_debug_command_menu()
 		can_toggle_cm = false
 	elif event.is_action_released("debug"):
 		can_toggle_cm = true
@@ -24,47 +22,45 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
-	Signals.DebugUpdateBoxText.connect(_update_debug_box_text)
-	Signals.DebugPrint.connect(_debug_print)
-	input.text_changed.connect(_ignore_tild)
+	Signals.DebugDisplayInfo.connect(_display_info)
 
 
-func _debug_print(_text:String) -> void:
-	output.text += "\n"
-	output.text += _text
+func _display_info(_player_id:int, _display:bool) -> void:
+	var info:DebugPlayerInfo = _get_debug_info(_player_id)
+	if info:
+		info.visible = _display
+	else:
+		var new_info:DebugPlayerInfo = load(PLAYERINFO).instantiate()
+		new_info.player_id = _player_id
+		info_control.add_child(new_info)
+		Debug.log(_get_position(_player_id))
+		new_info.position = _get_position(_player_id)
+		new_info.visible = _display
+		
+
+func _get_debug_info(_player_id:int) -> DebugPlayerInfo:
+	if infos.is_empty(): return null
+
+	for each in infos: if each.player_id == _player_id: return each
+
+	return null
 
 
-func _ignore_tild(_new:String) -> void:
-	var modified:String = _new
-	if not _new.is_empty():
-		while "`" in _new:
-			_new = _new.erase(_new.find("`"), 1)
-		if modified != _new:
-			input.text = _new
-
-
-func _toggle_debug_command_menu() -> void:
-	debug_command_menu.visible = !debug_command_menu.visible
-	if debug_command_menu.visible:
-		input.text = ""
-		input.grab_focus()
-
-
-func _update_debug_box_text(_id:String, _text:String) -> void:
-	if Debug.active:
-		match _id:
-			"move":
-				output_movement.text = _text
-			"state":
-				state.text = _text
-			"jump":
-				jump.text = _text
-			"jump_count":
-				jump_2.text = _text
-			"attacks":
-				attacks.text = _text
-			"axes":
-				axes.text = _text
-			_:
-				pass
-
+func _get_position(_player_id:int) -> Vector2:
+	match _player_id:
+		0: #432, 240
+			return Vector2(16, 16)
+		1:
+			return Vector2(16, 140)
+		2:
+			return Vector2(332, 16)
+		3:
+			return Vector2(332, 140)
+		4:
+			return Vector2(16, 16)
+		5:
+			return Vector2(16, 16)
+		6:
+			return Vector2(16, 16)
+		_:
+			return Vector2(16, 16)

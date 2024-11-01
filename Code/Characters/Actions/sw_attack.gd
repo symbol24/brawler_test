@@ -56,7 +56,7 @@ func _play_attack1(_state:Brawler.State, _animation_name:String) -> void:
 		can_action = false
 		parent.set_state(_state)
 		parent.sprite.position.x = parent.data.get_attack_value(attack1_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack1_name, "x")
-		if Debug.active: Signals.DebugUpdateBoxText.emit("attacks", "last attack: " + current_attack)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + current_attack)
 
 
 func _play_attack2(_state:Brawler.State, _animation_name:String):
@@ -69,7 +69,7 @@ func _play_attack2(_state:Brawler.State, _animation_name:String):
 		parent.can_move_on_x = parent.data.get_attack_value(attack2_name, "can_move_x")
 		parent.sprite.position.x = parent.data.get_attack_value(attack2_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack2_name, "x")
 		parent.set_velocity_y(parent.data.get_attack_value(attack2_name, "down_speed"))
-		if Debug.active: Signals.DebugUpdateBoxText.emit("attacks", "last attack: " + attack2_name)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + attack2_name)
 
 
 func _play_attack3(_state:Brawler.State, _animation_name:String):
@@ -81,7 +81,7 @@ func _play_attack3(_state:Brawler.State, _animation_name:String):
 		parent.set_state(_state)
 		parent.sprite.position.x = parent.data.get_attack_value(attack3_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack3_name, "x")
 		parent.set_velocity_y(-parent.data.get_attack_value(attack3_name, "up_speed"))
-		if Debug.active: Signals.DebugUpdateBoxText.emit("attacks", "last attack: " + attack3_name)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + attack3_name)
 
 
 

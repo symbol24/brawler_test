@@ -25,7 +25,7 @@ var jump_available:bool:
 var current_jump_count:int = 2:
 	set(value):
 		current_jump_count = value
-		if Debug.active: Signals.DebugUpdateBoxText.emit("jump_count", "current_jump_count = %d" % current_jump_count)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "jump_count", "current_jump_count = %d" % current_jump_count)
 
 var gravity:float:
 	get: return (2*jump_height)/pow(time_to_peak,2)
@@ -106,7 +106,7 @@ func _process(delta: float) -> void:
 		if  parent.can_move_on_x:
 			parent.can_move_on_x = false
 			parent.set_state(Brawler.State.PREJUMP)
-		if Debug.active: Signals.DebugUpdateBoxText.emit("jump", "charging: %10.2f" % jump_charge_percent)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "jump", "charging: %10.2f" % jump_charge_percent)
 	if precharge_wait: precharge_timer += delta
 
 
@@ -116,7 +116,7 @@ func _trigger_action() -> void:
 		landed = false
 		parent.set_state(Brawler.State.JUMP)
 		var final_jump_speed:float = -jump_speed if not parent.is_on_floor() else -(jump_speed + (parent.data.extra_jump_height * jump_charge_percent))
-		if Debug.active: Signals.DebugUpdateBoxText.emit("jump", "final jump speed: %10.2f" % final_jump_speed)
+		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "jump", "final jump speed: %10.2f" % final_jump_speed)
 		parent.set_velocity_y(final_jump_speed)
 		current_jump_count -= 1
 		can_action = true
