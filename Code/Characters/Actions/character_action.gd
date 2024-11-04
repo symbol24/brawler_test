@@ -21,4 +21,4 @@ func _trigger_action() -> void:
 
 
 func _get_can_action(_event:InputEvent) -> bool:
-	return parent and parent.player_data and _event.device == parent.player_data.device and button != ""
+	return parent and parent.player_data and parent.active and _event.device == parent.player_data.device and button != ""

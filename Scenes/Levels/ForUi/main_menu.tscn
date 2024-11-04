@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=4 uid="uid://mtf220m26y8e"]
+
+[ext_resource type="Script" path="res://Code/Levels/main_menu.gd" id="1_8xmd1"]
+[ext_resource type="TileSet" uid="uid://bptlguhc8j34v" path="res://Data/debug_tileset.tres" id="1_tccyf"]
+[ext_resource type="PackedScene" uid="uid://dfr2dccyaojwf" path="res://Scenes/Utilities/spawn_point.tscn" id="2_mqxte"]
+[ext_resource type="Script" path="res://Code/Utilities/spawn_point.gd" id="3_1lxhg"]
+[ext_resource type="Script" path="res://Code/Ui/MainMenu/player_ready_point.gd" id="5_hl65m"]
+[ext_resource type="Script" path="res://Code/Utilities/ready_area.gd" id="6_kr85a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyaf7"]
+size = Vector2(432, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iokhl"]
+size = Vector2(432, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xbg7"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ayot"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ekgq"]
+size = Vector2(16, 213)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqan0"]
+size = Vector2(408.5, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddv6v"]
+size = Vector2(32, 48)
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("ready_points") groups=["level"]]
+script = ExtResource("1_8xmd1")
+ready_points = [NodePath("ready_points/player_ready_point"), NodePath("ready_points/player_ready_point2"), NodePath("ready_points/player_ready_point3"), NodePath("ready_points/player_ready_point4")]
+
+[node name="ground and walls" type="StaticBody2D" parent="."]
+collision_mask = 43
+
+[node name="ground" type="TileMapLayer" parent="ground and walls"]
+tile_map_data = PackedByteArray("AAAAAA4AAAAEAAIAAAABAA4AAAAEAAIAAAACAA4AAAAEAAIAAAADAA4AAAAEAAIAAAAEAA4AAAAEAAIAAAAFAA4AAAAEAAIAAAAGAA4AAAAEAAIAAAAHAA4AAAAEAAIAAAAIAA4AAAAEAAIAAAAJAA4AAAAEAAIAAAAKAA4AAAAEAAIAAAALAA4AAAAEAAIAAAAMAA4AAAAEAAIAAAANAA4AAAAEAAIAAAAOAA4AAAAEAAIAAAAPAA4AAAAEAAIAAAAQAA4AAAAEAAIAAAARAA4AAAAEAAIAAAASAA4AAAAEAAIAAAATAA4AAAAEAAIAAAAUAA4AAAAEAAIAAAAVAA4AAAAEAAIAAAAWAA4AAAAEAAIAAAAXAA4AAAAEAAIAAAAYAA4AAAAEAAIAAAAZAA4AAAAEAAIAAAAaAA4AAAAEAAIAAAAAAA0AAAAEAAIAAAAAAAwAAAAEAAIAAAAAAAsAAAAEAAIAAAAAAAoAAAAEAAIAAAAAAAkAAAAEAAIAAAAAAAgAAAAEAAIAAAAAAAcAAAAEAAIAAAAAAAYAAAAEAAIAAAAAAAUAAAAEAAIAAAAAAAQAAAAEAAIAAAAAAAMAAAAEAAIAAAAAAAIAAAAEAAIAAAAAAAEAAAAEAAIAAAAAAAAAAAAEAAIAAAABAAAAAAAEAAIAAAACAAAAAAAEAAIAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAIAAAAGAAAAAAAEAAIAAAAHAAAAAAAEAAIAAAAIAAAAAAAEAAIAAAAJAAAAAAAEAAIAAAAKAAAAAAAEAAIAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAIAAAAOAAAAAAAEAAIAAAAPAAAAAAAEAAIAAAAQAAAAAAAEAAIAAAARAAAAAAAEAAIAAAASAAAAAAAEAAIAAAAXAAAAAAAEAAIAAAAYAAAAAAAEAAIAAAAZAAAAAAAEAAIAAAAaAAAAAAAEAAIAAAAWAAAAAAAEAAIAAAAVAAAAAAAEAAIAAAAUAAAAAAAEAAIAAAATAAAAAAAEAAIAAAAaAAEAAAAEAAIAAAAaAAIAAAAEAAIAAAAaAAMAAAAEAAIAAAAaAAQAAAAEAAIAAAAaAAUAAAAEAAIAAAAaAAYAAAAEAAIAAAAaAAcAAAAEAAIAAAAaAAgAAAAEAAIAAAAaAAkAAAAEAAIAAAAaAAoAAAAEAAIAAAAaAAwAAAAEAAIAAAAaAA0AAAAEAAIAAAAaAAsAAAAEAAIAAAANAA0AAAAEAAIAAAANAAwAAAAEAAIAAAANAAsAAAAEAAIAAAANAAoAAAAEAAIAAAANAAkAAAAEAAIAAAANAAgAAAAEAAIAAAANAAcAAAAEAAIAAAANAAYAAAAEAAIAAAANAAUAAAAEAAIAAAANAAQAAAAEAAIAAAANAAMAAAAEAAIAAAANAAIAAAAEAAIAAAANAAEAAAAEAAIAAAABAAcAAAAEAAIAAAACAAcAAAAEAAIAAAADAAcAAAAEAAIAAAAEAAcAAAAEAAIAAAAFAAcAAAAEAAIAAAAGAAcAAAAEAAIAAAAHAAcAAAAEAAIAAAAIAAcAAAAEAAIAAAAJAAcAAAAEAAIAAAAKAAcAAAAEAAIAAAALAAcAAAAEAAIAAAARAAcAAAAEAAIAAAASAAcAAAAEAAIAAAATAAcAAAAEAAIAAAAUAAcAAAAEAAIAAAAVAAcAAAAEAAIAAAAWAAcAAAAEAAIAAAAXAAcAAAAEAAIAAAAYAAcAAAAEAAIAAAAZAAcAAAAEAAIAAAAQAAcAAAAEAAIAAAAPAAcAAAAEAAIAAAAOAAcAAAAEAAIAAAAMAAcAAAAEAAIAAAA=")
+tile_set = ExtResource("1_tccyf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216, 8)
+shape = SubResource("RectangleShape2D_cyaf7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216, 232)
+shape = SubResource("RectangleShape2D_iokhl")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(8, 120)
+shape = SubResource("RectangleShape2D_3xbg7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(424, 120)
+shape = SubResource("RectangleShape2D_4ayot")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216, 118.5)
+shape = SubResource("RectangleShape2D_1ekgq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ground and walls"]
+position = Vector2(216.75, 120)
+shape = SubResource("RectangleShape2D_kqan0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(216, 120)
+
+[node name="spawn_point" parent="." instance=ExtResource("2_mqxte")]
+position = Vector2(104, 112)
+
+[node name="spawn_point2" type="Marker2D" parent="." groups=["spawn_point"]]
+position = Vector2(312, 112)
+script = ExtResource("3_1lxhg")
+player_id = 1
+
+[node name="spawn_point3" type="Marker2D" parent="." groups=["spawn_point"]]
+position = Vector2(104, 224)
+script = ExtResource("3_1lxhg")
+player_id = 1
+
+[node name="spawn_point4" type="Marker2D" parent="." groups=["spawn_point"]]
+position = Vector2(312, 224)
+script = ExtResource("3_1lxhg")
+player_id = 1
+
+[node name="ready_points" type="Node2D" parent="."]
+
+[node name="player_ready_point" type="Marker2D" parent="ready_points" groups=["player_ready_point"]]
+position = Vector2(104, 64)
+script = ExtResource("5_hl65m")
+id = 0
+
+[node name="player_ready_point2" type="Marker2D" parent="ready_points" groups=["player_ready_point"]]
+position = Vector2(312, 64)
+script = ExtResource("5_hl65m")
+id = 1
+
+[node name="player_ready_point3" type="Marker2D" parent="ready_points" groups=["player_ready_point"]]
+position = Vector2(104, 176)
+script = ExtResource("5_hl65m")
+id = 2
+
+[node name="player_ready_point4" type="Marker2D" parent="ready_points" groups=["player_ready_point"]]
+position = Vector2(312, 176)
+script = ExtResource("5_hl65m")
+id = 3
+
+[node name="ready_area" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("6_kr85a")
+
+[node name="visual" type="TileMapLayer" parent="ready_area"]
+tile_map_data = PackedByteArray("AAALAAYAAAAMAAIAAAAMAAYAAAAMAAIAAAAMAAUAAAAMAAIAAAAMAAQAAAAMAAIAAAALAAQAAAAMAAIAAAALAAUAAAAMAAIAAAA=")
+tile_set = ExtResource("1_tccyf")
+
+[node name="ready_area_colliedr" type="CollisionShape2D" parent="ready_area"]
+position = Vector2(192, 88)
+shape = SubResource("RectangleShape2D_ddv6v")
+
+[node name="ready_area2" type="Area2D" parent="."]
+position = Vector2(208, 0)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("6_kr85a")
+
+[node name="visual" type="TileMapLayer" parent="ready_area2"]
+tile_map_data = PackedByteArray("AAALAAYAAAAMAAIAAAAMAAYAAAAMAAIAAAAMAAUAAAAMAAIAAAAMAAQAAAAMAAIAAAALAAQAAAAMAAIAAAALAAUAAAAMAAIAAAA=")
+tile_set = ExtResource("1_tccyf")
+
+[node name="ready_area_colliedr" type="CollisionShape2D" parent="ready_area2"]
+position = Vector2(192, 88)
+shape = SubResource("RectangleShape2D_ddv6v")
+
+[node name="ready_area3" type="Area2D" parent="."]
+position = Vector2(0, 112)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("6_kr85a")
+
+[node name="visual" type="TileMapLayer" parent="ready_area3"]
+tile_map_data = PackedByteArray("AAALAAYAAAAMAAIAAAAMAAYAAAAMAAIAAAAMAAUAAAAMAAIAAAAMAAQAAAAMAAIAAAALAAQAAAAMAAIAAAALAAUAAAAMAAIAAAA=")
+tile_set = ExtResource("1_tccyf")
+
+[node name="ready_area_colliedr" type="CollisionShape2D" parent="ready_area3"]
+position = Vector2(192, 88)
+shape = SubResource("RectangleShape2D_ddv6v")
+
+[node name="ready_area4" type="Area2D" parent="."]
+position = Vector2(208, 112)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("6_kr85a")
+
+[node name="visual" type="TileMapLayer" parent="ready_area4"]
+tile_map_data = PackedByteArray("AAALAAYAAAAMAAIAAAAMAAYAAAAMAAIAAAAMAAUAAAAMAAIAAAAMAAQAAAAMAAIAAAALAAQAAAAMAAIAAAALAAUAAAAMAAIAAAA=")
+tile_set = ExtResource("1_tccyf")
+
+[node name="ready_area_colliedr" type="CollisionShape2D" parent="ready_area4"]
+position = Vector2(192, 88)
+shape = SubResource("RectangleShape2D_ddv6v")

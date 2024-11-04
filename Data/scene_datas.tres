@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://jr54tbb0mfat"]
+
+[ext_resource type="Script" path="res://Code/Utilities/level_data.gd" id="1_1glru"]
+
+[resource]
+script = ExtResource("1_1glru")
+levels = {
+"main_menu": "res://Scenes/Levels/ForUi/main_menu.tscn",
+"test": "res://Scenes/test/test.tscn"
+}
+extra_loading_time = 1.0

@@ -4,28 +4,32 @@ class_name BrawlerData extends Resource
 @export var id:String
 @export var path:String
 
-@export_group("Health")
+@export_category("Health")
 @export var starting_life:int = -1
 @export var starting_hp:int = 1
 
-@export_group("Move")
+@export_category("Move")
 @export var friction:float = 700
 @export var acceleration:float = 1100
 @export var starting_speed:float = 200
 @export var air_multiplier:float = 0.7
 
-@export_group("Jump")
+@export_category("Jump")
 @export var starting_jump_count:int = 2
 @export var starting_time_to_peak:float = 0.3
 @export var starting_time_to_descend:float = 0.5
 @export var starting_jump_height:int = 32
 @export var starting_extra_jump_height:int = 16
 
-@export_group("Attacks")
+@export_category("Attacks")
 @export var attacks:Dictionary = {	"attack1":{
 									"state":Brawler.State.ATTACK1,
 									}
 								}
+
+@export_category("Spawning")
+@export var spawn_in_delay:float = 0.5
+
 
 # MOVE
 var speed:float:

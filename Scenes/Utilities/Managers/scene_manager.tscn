@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc82akq0q1glp"]
+
+[ext_resource type="Script" path="res://Code/Utilities/Managers/scene_manager.gd" id="1_ef4ai"]
+[ext_resource type="Resource" uid="uid://jr54tbb0mfat" path="res://Data/scene_datas.tres" id="2_7e7ks"]
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_ef4ai")
+levels = ExtResource("2_7e7ks")

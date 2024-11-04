@@ -41,3 +41,4 @@ attacks = {
 "x": 1.0
 }
 }
+spawn_in_delay = 0.5

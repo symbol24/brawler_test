@@ -5,11 +5,17 @@ class_name SpawnManager extends Node2D
 
 var spawn_points:Array[SpawnPoint] = []
 var spawned_brawlers:Array[Brawler] = []
+var level:Level
 
 
 func _ready() -> void:
 	Signals.SpawnPlayer.connect(_spawn_one_player)
 
+
+func spawn_all_players() -> void:
+	for each in Manager.multiplayer_manager.players:
+		_spawn_one_player(each)
+		
 
 func _spawn_one_player(_data:PlayerData) -> void:
 	if spawn_points.is_empty(): spawn_points = _get_spawn_points()
@@ -24,6 +30,7 @@ func _spawn_one_player(_data:PlayerData) -> void:
 			await new_brawler.ready
 		new_brawler.global_position = point.global_position
 		spawned_brawlers.append(new_brawler)
+		new_brawler.set_state(Brawler.State.RESPAWN)
 	else:
 		Debug.warning("Player with id %d and selected character %s not spawned due to missing Brawler Data." % [_data.player_id, _data.brawler_id])
 

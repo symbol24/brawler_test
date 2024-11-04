@@ -19,9 +19,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	parent.set_velocity_x(_get_new_x(parent.velocity.x, direction, delta))
-	_state_check()
-	if display_debug: _debug_move_output()
+	if parent.active:
+		parent.set_velocity_x(_get_new_x(parent.velocity.x, direction, delta))
+		_state_check()
+		if display_debug: _debug_move_output()
 
 
 func _get_new_x(_old_x:float = 0.0, _direction:float = 0.0, delta:float = 0.0) -> float:
@@ -51,4 +52,4 @@ func _debug_move_output() -> void:
 
 
 func _get_can_move(_event:InputEvent) -> bool:
-	return parent and parent.data and _event.device == parent.player_data.device and _event is InputEventJoypadMotion and (_event.is_action("left") or _event.is_action("right"))
+	return parent and parent.data and parent.active and _event.device == parent.player_data.device and _event is InputEventJoypadMotion and (_event.is_action("left") or _event.is_action("right"))

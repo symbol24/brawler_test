@@ -24,6 +24,7 @@ enum State {
 var data:BrawlerData
 var player_data:PlayerData
 
+var active:bool = false
 var current_state:State = State.IDLE:
 	set(value):
 		current_state = value
@@ -45,10 +46,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	#set_state(_update_state())
-	if can_flip: flipped = _flip(to_flip, flipped)
-	if not can_move_on_x: velocity.x = 0
-	move_and_slide()
+	if active:
+		#set_state(_update_state())
+		if can_flip: flipped = _flip(to_flip, flipped)
+		if not can_move_on_x: velocity.x = 0
+		move_and_slide()
 
 
 func set_data(_data:BrawlerData, _player_data:PlayerData) -> void:
@@ -139,10 +141,11 @@ func set_state(new_state:State) -> void:
 					cant_change_state = true
 					can_flip = false
 			State.RESPAWN:
-				if current_animation != "respawn":
-					current_animation = "respawn"
+				if current_animation != "teleport_in":
+					current_animation = "teleport_in"
 					cant_change_state = true
 					can_flip = false
+					get_tree().create_timer(data.spawn_in_delay).timeout.connect(_spawn_delay_end)
 			_:
 				if current_animation != "idle":
 					current_animation = "idle"
@@ -221,6 +224,11 @@ func _get_state_as_string() -> String:
 			pass
 	return result
 
+
+func _spawn_delay_end() -> void:
+	cant_change_state = false
+	set_state(State.IDLE)
+	active = true
 
 
 # DEBUG SECTION
