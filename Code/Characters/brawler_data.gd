@@ -22,19 +22,29 @@ class_name BrawlerData extends Resource
 @export var starting_extra_jump_height:int = 16
 
 @export_category("Attacks")
-@export var attacks:Dictionary = {	"attack1":{
-									"state":Brawler.State.ATTACK1,
-									}
-								}
+@export var attacks:Array[AttackData]
 
 @export_category("Spawning")
 @export var spawn_in_delay:float = 0.5
 
+# HP
+var current_hp:int = -1:
+	set(value):
+		current_hp = value
+		if current_hp <= 0:
+			current_life_count -= 1
+			is_alive = false
+			Signals.BrawlerDeath.emit(self)
+var current_life_count:int = -1:
+	set(value):
+		current_life_count = value
+		if current_life_count < 0: current_life_count = 0
+		Signals.UpdatePlayerLifeCount.emit(self)
+var is_alive:bool = true
 
 # MOVE
 var speed:float:
 	get: return starting_speed
-
 
 # JUMP
 var jump_count:int:
@@ -49,6 +59,13 @@ var extra_jump_height:int:
 	get:return starting_jump_height
 
 
+func setup_brawler() -> void:
+	current_hp = starting_hp
+	if current_life_count == -1:
+		current_life_count = starting_life
+	is_alive = true
+
+
 func get_duplicate() -> BrawlerData:
 	var result:BrawlerData = BrawlerData.new()
 	result = duplicate()
@@ -57,7 +74,19 @@ func get_duplicate() -> BrawlerData:
 	return result
 
 
-func get_attack_value(attack_key:String, value_key:String):
-	if attacks.has(attack_key) and attacks[attack_key].has(value_key):
-			return attacks[attack_key][value_key]
-	return 0
+func receive_damages(_damages:Array[Damage]) -> void:
+	if not _damages.is_empty(): Signals.BrawlerHit.emit(self)
+	for each in _damages:
+		if is_alive: current_hp -= each.get_damage()
+
+
+func get_attack_value(attack_id:String, var_name:String):
+	for each in attacks:
+		if each.id == attack_id and each.get(var_name): return each.get(var_name)
+	return null
+
+
+func get_attack_by_id(_id:String) -> AttackData:
+	for each in attacks:
+		if each.id == _id: return each
+	return null

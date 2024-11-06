@@ -8,3 +8,4 @@ var player_id:int = -1
 var player_ready:bool = false
 
 var brawler_id:String = "swordswoman"
+var active_brawler:BrawlerData

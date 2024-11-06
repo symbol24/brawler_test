@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dy86jtt6pw10h"]
+[gd_scene load_steps=28 format=3 uid="uid://dy86jtt6pw10h"]
 
 [ext_resource type="Script" path="res://Code/Characters/brawler.gd" id="1_l1sbu"]
 [ext_resource type="Texture2D" uid="uid://we6qleae0c6n" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite without VFX.png" id="1_lpun4"]
@@ -7,8 +7,22 @@
 [ext_resource type="Script" path="res://Code/Characters/Actions/sw_attack.gd" id="5_plkbi"]
 [ext_resource type="Texture2D" uid="uid://b4fgaiifdjn5c" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite with VFX.png" id="5_v7maw"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/dash.gd" id="6_aayvo"]
+[ext_resource type="PackedScene" uid="uid://bmskyxi7l14x8" path="res://Scenes/Characters/brawler_hit_box.tscn" id="8_85vof"]
+[ext_resource type="Script" path="res://Code/Utilities/attack_area.gd" id="9_02j35"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cheb5"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wq2j"]
+radius = 3.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qq2ey"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sylrf"]
 radius = 4.0
 height = 14.0
 
@@ -73,6 +87,42 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sw_attack/AttackArea/attack1:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sw_attack/AttackArea/attack2:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sw_attack/AttackArea/attack3:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ntr34"]
@@ -139,6 +189,35 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -7)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sw_attack/AttackArea/attack1:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sw_attack/AttackArea")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["attack1"],
+"method": &"set_current_attack"
+}, {
+"args": [""],
+"method": &"set_current_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_uk3di"]
 resource_name = "attack2"
@@ -192,6 +271,35 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 3), Vector2i(8, 3)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sw_attack/AttackArea/attack2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sw_attack/AttackArea")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["attack2"],
+"method": &"set_current_attack"
+}, {
+"args": [""],
+"method": &"set_current_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_efu8e"]
 resource_name = "attack3"
@@ -244,6 +352,35 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(9, 3), Vector2i(10, 3), Vector2i(11, 3), Vector2i(12, 3), Vector2i(13, 3), Vector2i(14, 3), Vector2i(15, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sw_attack/AttackArea/attack3:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sw_attack/AttackArea")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["attack1"],
+"method": &"set_current_attack"
+}, {
+"args": [""],
+"method": &"set_current_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_e8l5r"]
@@ -805,6 +942,7 @@ hframes = 17
 vframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_cheb5")
 
@@ -828,8 +966,38 @@ attack2_name = "attack2"
 attack3_name = "attack3"
 button = "attack"
 
+[node name="AttackArea" type="Area2D" parent="sw_attack"]
+collision_layer = 4
+collision_mask = 30
+script = ExtResource("9_02j35")
+
+[node name="attack1" type="CollisionShape2D" parent="sw_attack/AttackArea" groups=["flip"]]
+position = Vector2(10, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7wq2j")
+disabled = true
+
+[node name="attack2" type="CollisionPolygon2D" parent="sw_attack/AttackArea" groups=["flip"]]
+position = Vector2(8, -6)
+polygon = PackedVector2Array(8, 6, 10, 6, 10, 3, 9, 1, 8, -1, 7, -2, 4, -5, 2, -6, -1, -6, -2, -7, -5, -7, -5, -3, -2, -3, -1, -3, 0, -2, 1, 1, 1, 3, 1, 6)
+disabled = true
+
+[node name="attack3" type="CollisionShape2D" parent="sw_attack/AttackArea" groups=["flip"]]
+position = Vector2(14, -13)
+shape = SubResource("CapsuleShape2D_qq2ey")
+disabled = true
+
+[node name="BrawlerHitBox" parent="." instance=ExtResource("8_85vof")]
+visible = false
+
+[node name="CollisionShape2D" parent="BrawlerHitBox" index="0"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_sylrf")
+
 [node name="animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_p8f8v")
 }
+
+[editable path="BrawlerHitBox"]

@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func get_player_data(player_id:int) -> PlayerData:
-	_print_active_players()
+	#_print_active_players()
 	for each in players:
 		if each.player_id == player_id: return each
 	Debug.warning("No player data found for id %d" % player_id)
@@ -59,7 +59,7 @@ func _setup_new_player(_device:int) -> void:
 	
 	if players.size() >= MAXPLAYERCOUNT: waiting_for_input = false
 	#Debug.log("Player count: %d" % players.size())
-	_print_active_players()
+	#_print_active_players()
 	Signals.SpawnPlayer.emit(new_player)
 
 

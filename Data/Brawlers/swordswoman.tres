@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="BrawlerData" load_steps=2 format=3 uid="uid://7cvrkxher4qc"]
+[gd_resource type="Resource" script_class="BrawlerData" load_steps=6 format=3 uid="uid://7cvrkxher4qc"]
 
+[ext_resource type="Script" path="res://Code/Utilities/attack_data.gd" id="1_g7iqu"]
 [ext_resource type="Script" path="res://Code/Characters/brawler_data.gd" id="1_rlpl7"]
+[ext_resource type="Resource" uid="uid://cru7f5ihegmeq" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack1_data.tres" id="2_3t1b4"]
+[ext_resource type="Resource" uid="uid://b8dpyo8sq07xv" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack2_data.tres" id="3_s6bq1"]
+[ext_resource type="Resource" uid="uid://bv08mnxsnstvc" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack3_data.tres" id="4_i3frd"]
 
 [resource]
 script = ExtResource("1_rlpl7")
 id = "swordswoman"
 path = "res://Scenes/Characters/swordswoman.tscn"
-starting_life = -1
+starting_life = 3
 starting_hp = 1
 friction = 700.0
 acceleration = 1100.0
@@ -17,28 +21,5 @@ starting_time_to_peak = 0.3
 starting_time_to_descend = 0.3
 starting_jump_height = 36
 starting_extra_jump_height = 16
-attacks = {
-"attack1": {
-"can_move_x": true,
-"post_attack_delay": 0.1,
-"state": 4,
-"x": 4.0
-},
-"attack2": {
-"active_time": 1.0,
-"can_move_x": false,
-"down_speed": 300.0,
-"post_attack_delay": 0.2,
-"state": 5,
-"x": 2.0
-},
-"attack3": {
-"active_time": 0.5,
-"can_move_x": true,
-"post_attack_delay": 0.1,
-"state": 6,
-"up_speed": 200.0,
-"x": 1.0
-}
-}
+attacks = Array[ExtResource("1_g7iqu")]([ExtResource("2_3t1b4"), ExtResource("3_s6bq1"), ExtResource("4_i3frd")])
 spawn_in_delay = 0.5

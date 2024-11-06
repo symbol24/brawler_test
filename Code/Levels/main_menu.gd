@@ -7,8 +7,7 @@ var readies:Array = []
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("start") and Manager.multiplayer_manager.is_device_in_use(event.device):
-		Debug.log("Device %d has pressed start." % event.device)
+	if event.is_action_pressed("start") and Manager.mpm.is_device_in_use(event.device):
 		if _check_if_one_ready():
 			Signals.MPMAcceptInputs.emit(false)
 			_play()
@@ -27,7 +26,7 @@ func _send_mpm_input() -> void:
 
 
 func _check_player_ready(player_id:int, display:bool) -> void:
-	var player_data:PlayerData = Manager.multiplayer_manager.get_player_data(player_id)
+	var player_data:PlayerData = Manager.mpm.get_player_data(player_id)
 	if player_data:
 		player_data.player_ready = display
 
@@ -57,7 +56,7 @@ func _play() -> void:
 
 func _check_if_one_ready() -> bool:
 	var count:int = 0
-	for each in Manager.multiplayer_manager.players:
+	for each in Manager.mpm.players:
 		if each.player_ready: count += 1
 	
 	return count >= 1

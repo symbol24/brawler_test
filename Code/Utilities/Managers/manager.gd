@@ -7,7 +7,7 @@ const MAXPLAYERCOUNT:int = 2
 @export var packe_data_manager:PackedScene
 
 var data_manager:DataManager
-var multiplayer_manager:MultiplayerManager
+var mpm:MultiplayerManager
 var spawn_manager:SpawnManager
 
 # load scenes that are not levels
@@ -35,10 +35,10 @@ func _process(_delta: float) -> void:
 
 
 func load_mpm() -> void:
-	if multiplayer_manager == null:
-		multiplayer_manager = data_manager.packed_multiplayer_manager.instantiate()
-		add_child(multiplayer_manager)
-		multiplayer_manager.name = "mpm"
+	if mpm == null:
+		mpm = data_manager.packed_multiplayer_manager.instantiate()
+		add_child(mpm)
+		mpm.name = "mpm"
 	else:
 		Signals.MPMReady.emit()
 

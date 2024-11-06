@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 	
 
 func load_scene(_id:String = "") -> void:
+	Debug.log("Received load request for ", _id)
 	# Send loadscreen toggle on
 	Signals.ToggleLoadingScreen.emit(true)
 	get_tree().paused = true

@@ -25,17 +25,14 @@ func _input(event: InputEvent) -> void:
 	if _get_can_action(event) and event.is_action_pressed(button):
 		if Input.get_axis("up", "down") > DOWNAXISNEEDED:
 			if attack2_name == "": Debug.warning("player ", parent.name, " attack2_name is empty.")
-			delay = parent.data.get_attack_value(attack2_name, "post_attack_delay")
-			_play_attack2(parent.data.get_attack_value(attack2_name, "state"), attack2_name)
+			else: _play_attack(attack2_name)
 		elif Input.get_axis("up", "down") < UPAXISNEEDED:
-			if attack2_name == "": Debug.warning("player ", parent.name, " attack3_name is empty.")
-			delay = parent.data.get_attack_value(attack3_name, "post_attack_delay")
-			_play_attack3(parent.data.get_attack_value(attack3_name, "state"), attack3_name)
+			if attack3_name == "": Debug.warning("player ", parent.name, " attack3_name is empty.")
+			else: _play_attack(attack3_name)
 
 		else:
 			if attack1_name == "": Debug.warning("player ", parent.name, " attack1_name is empty.")
-			delay = parent.data.get_attack_value(attack1_name, "post_attack_delay")
-			_play_attack1(parent.data.get_attack_value(attack1_name, "state"), attack1_name)
+			else: _play_attack(attack1_name)
 
 
 func _ready() -> void:
@@ -50,39 +47,22 @@ func _process(delta: float) -> void:
 	if attack_active: attack_active_time -= delta
 
 
-func _play_attack1(_state:Brawler.State, _animation_name:String) -> void:
+func _play_attack(_attack_name:String) -> void:
 	if can_action:
-		current_attack = attack1_name
-		can_action = false
-		parent.set_state(_state)
-		parent.sprite.position.x = parent.data.get_attack_value(attack1_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack1_name, "x")
-		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + current_attack)
+		var attack_data:AttackData = parent.data.get_attack_by_id(_attack_name)
+		if attack_data:
+			can_action = false
+			delay = attack_data.post_attack_delay
+			parent.set_state(attack_data.state)
+			parent.sprite.position.x = attack_data.x_offset if not parent.sprite.flip_h else -attack_data.x_offset
+			if attack_data.has_move:
+				attack_active_time = attack_data.move_active_time
+				attack_active = true
+				parent.set_velocity_y(attack_data.move_speed)
 
-
-func _play_attack2(_state:Brawler.State, _animation_name:String):
-	if can_action:
-		current_attack = attack2_name
-		can_action = false
-		attack_active_time = parent.data.get_attack_value(attack2_name, "active_time")
-		attack_active = true
-		parent.set_state(_state)
-		parent.can_move_on_x = parent.data.get_attack_value(attack2_name, "can_move_x")
-		parent.sprite.position.x = parent.data.get_attack_value(attack2_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack2_name, "x")
-		parent.set_velocity_y(parent.data.get_attack_value(attack2_name, "down_speed"))
-		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + attack2_name)
-
-
-func _play_attack3(_state:Brawler.State, _animation_name:String):
-	if can_action:
-		current_attack = attack3_name
-		can_action = false
-		attack_active_time = parent.data.get_attack_value(attack3_name, "active_time")
-		attack_active = true
-		parent.set_state(_state)
-		parent.sprite.position.x = parent.data.get_attack_value(attack3_name, "x") if not parent.sprite.flip_h else -parent.data.get_attack_value(attack3_name, "x")
-		parent.set_velocity_y(-parent.data.get_attack_value(attack3_name, "up_speed"))
-		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + attack3_name)
-
+			if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "attacks", "last attack: " + current_attack)
+		else:
+			Debug.error("No attack found for id %s." % _attack_name)
 
 
 func _animation_ended(anim:String) -> void:

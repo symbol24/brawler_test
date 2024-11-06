@@ -1,6 +1,8 @@
 class_name Brawler extends CharacterBody2D
 
 
+const RESPAWNIMMUNITYTIME:float = 3.0
+
 enum State {
 			NOTHING = -1,
 			IDLE = 0,
@@ -37,57 +39,49 @@ var to_flip:Array = []
 var flipped:bool = false
 var can_flip:bool = true
 
+var can_be_hit:bool = false
+
 
 func _ready() -> void:
+	can_be_hit = false
+	Signals.BrawlerDeath.connect(_death)
+	Signals.BrawlerHit.connect(_hit)
 	if not animator.is_node_ready():
 		await animator.ready
-	animator.animation_finished.connect(_animation_end)
-	to_flip = _get_to_flip()
+	animator.animation_finished.connect(_animation_ended)
+	to_flip = _get_to_flip(self)
 
 
 func _process(_delta: float) -> void:
-	if active:
-		#set_state(_update_state())
-		if can_flip: flipped = _flip(to_flip, flipped)
-		if not can_move_on_x: velocity.x = 0
-		move_and_slide()
+	#set_state(_update_state())
+	if can_flip: flipped = _flip(to_flip, flipped)
+	if not can_move_on_x: velocity.x = 0
+	move_and_slide()
 
 
 func set_data(_data:BrawlerData, _player_data:PlayerData) -> void:
-	data = _data.get_duplicate()
+	data = _data
 	player_data = _player_data
 
 
 func set_velocity_x(value:float = 0.0) -> void:
-	velocity.x = value
+	if active:
+		velocity.x = value
 
 
 func add_velocity_x(value:float = 0.0) -> void:
-	velocity.x += value
+	if active:
+		velocity.x += value
 
 
 func set_velocity_y(value:float = 0.0) -> void:
-	velocity.y = value
+	if active:
+		velocity.y = value
 
 
 func add_velocity_y(value:float = 0.0) -> void:
-	velocity.y += value
-
-
-func _update_state() -> State:
-	var new:State = current_state
-	if not cant_change_state:
-		if is_on_floor() and (velocity.x >= 1 or velocity.x <= -1):
-			new = State.WALK
-		elif is_on_floor() and velocity.x < 0.1 and velocity.x > -0.1 and current_state != State.IDLE:
-			new = State.IDLE
-		
-		if velocity.y <= -0.1:
-			new = State.JUMP
-		elif velocity.y >= 0.1:
-			new = State.FALL
-	
-	return new
+	if active:
+		velocity.y += value
 
 
 func set_state(new_state:State) -> void:
@@ -154,6 +148,10 @@ func set_state(new_state:State) -> void:
 			_set_animation(current_animation)
 
 
+func get_can_be_hit() -> bool:
+	return data.is_alive and can_be_hit and active
+
+
 func _set_animation(anim_name:String) -> void:
 	#Debug.log("Animator received ", anim_name)
 	animator.play("RESET")
@@ -161,12 +159,29 @@ func _set_animation(anim_name:String) -> void:
 	animator.play(anim_name)
 
 
-func _get_to_flip() -> Array:
+func _update_state() -> State:
+	var new:State = current_state
+	if not cant_change_state:
+		if is_on_floor() and (velocity.x >= 1 or velocity.x <= -1):
+			new = State.WALK
+		elif is_on_floor() and velocity.x < 0.1 and velocity.x > -0.1 and current_state != State.IDLE:
+			new = State.IDLE
+		
+		if velocity.y <= -0.1:
+			new = State.JUMP
+		elif velocity.y >= 0.1:
+			new = State.FALL
+	
+	return new
+
+
+func _get_to_flip(_parent) -> Array:
 	var result:Array = []
-	var children = get_children()
+	var children = _parent.get_children()
 	for child in children:
 		if child.is_in_group("flip"):
 			result.append(child)
+		result.append_array(_get_to_flip(child))
 	return result
 
 
@@ -187,13 +202,56 @@ func _flip(array:Array = [], is_flipped:bool = false) -> bool:
 	return is_flipped
 
 
-func _animation_end(anim_name:String) -> void:
+func _spawn_delay_end() -> void:
+	cant_change_state = false
+	set_state(State.IDLE)
+	active = true
+	if data.current_life_count < data.starting_life:
+		_respawn_immunity_flash(RESPAWNIMMUNITYTIME/0.3)
+	else:
+		can_be_hit = true
+
+
+func _respawn_immunity_flash(_amount:float) -> void:
+	var tween:Tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	var x:int = 0
+	while x < _amount:
+		tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.15)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+		x += 1
+	await get_tree().create_timer(RESPAWNIMMUNITYTIME).timeout
+	can_be_hit = true
+
+
+func _death(_brawler_data:BrawlerData) -> void:
+	if _brawler_data == data:
+		active = false
+		set_state(State.DEATH)
+
+
+func _hit(_brawler_data:BrawlerData) -> void:
+	if _brawler_data == data:
+		var tween:Tween = create_tween()
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+
+
+func _animation_ended(anim_name:String) -> void:
 	match anim_name:
-		"attack1":
-			pass
+		"death":
+			await get_tree().create_timer(1).timeout
+			cant_change_state = false
+			set_state(State.TELEPORTOUT)
+		"teleport_out":
+			Manager.spawn_manager.respawn_player(player_data)
+			queue_free()
 		_:
 			pass
 
+
+
+# DEBUG SECTION
 
 func _get_state_as_string() -> String:
 	var result:String = ""
@@ -224,14 +282,6 @@ func _get_state_as_string() -> String:
 			pass
 	return result
 
-
-func _spawn_delay_end() -> void:
-	cant_change_state = false
-	set_state(State.IDLE)
-	active = true
-
-
-# DEBUG SECTION
 
 func _debug_state_update() -> void:
 	Signals.DebugUpdateBoxText.emit(player_data.player_id, "state", "State: " + _get_state_as_string())

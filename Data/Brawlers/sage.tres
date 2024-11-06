@@ -1,21 +1,22 @@
-[gd_resource type="Resource" script_class="BrawlerData" load_steps=2 format=3 uid="uid://ct4vj440kuqob"]
+[gd_resource type="Resource" script_class="BrawlerData" load_steps=3 format=3 uid="uid://ct4vj440kuqob"]
 
+[ext_resource type="Script" path="res://Code/Utilities/attack_data.gd" id="1_04a5e"]
 [ext_resource type="Script" path="res://Code/Characters/brawler_data.gd" id="1_40yl5"]
 
 [resource]
 script = ExtResource("1_40yl5")
 id = ""
+path = ""
 starting_life = -1
 starting_hp = 1
 friction = 700.0
 acceleration = 1100.0
-speed = 200.0
+starting_speed = 200.0
+air_multiplier = 0.7
 starting_jump_count = 2
 starting_time_to_peak = 0.3
 starting_time_to_descend = 0.5
 starting_jump_height = 32
-attacks = {
-"attack1": {
-"state": 4
-}
-}
+starting_extra_jump_height = 16
+attacks = Array[ExtResource("1_04a5e")]([])
+spawn_in_delay = 0.5

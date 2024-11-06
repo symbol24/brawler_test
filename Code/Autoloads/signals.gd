@@ -26,7 +26,13 @@ signal SceneLoadingComplete(level:Level)
 
 # UI
 signal ToggleLoadingScreen(display:bool)
+signal UpdatePlayerLifeCount(brawler_data:BrawlerData)
 
 
-# to be changed later
+# SpawnManager
 signal SpawnPlayer(player_data:PlayerData)
+
+
+# Brawlers
+signal BrawlerDeath(brawler:BrawlerData)
+signal BrawlerHit(brawler:BrawlerData)

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=4 format=3 uid="uid://b8dpyo8sq07xv"]
+
+[ext_resource type="Script" path="res://Code/Utilities/damage.gd" id="1_4akad"]
+[ext_resource type="Script" path="res://Code/Utilities/attack_data.gd" id="2_3kogk"]
+[ext_resource type="Resource" uid="uid://cqa55tg76lwox" path="res://Data/Brawlers/Swordswoman/Damages/attack2_damage.tres" id="2_18utl"]
+
+[resource]
+script = ExtResource("2_3kogk")
+id = "attack2"
+state = 5
+post_attack_delay = 0.2
+can_move_x = false
+x_offset = 2
+damages = Array[ExtResource("1_4akad")]([ExtResource("2_18utl")])
+has_move = true
+move_speed = 300.0
+move_active_time = 1.0

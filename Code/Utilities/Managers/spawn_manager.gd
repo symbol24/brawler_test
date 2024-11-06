@@ -13,22 +13,34 @@ func _ready() -> void:
 
 
 func spawn_all_players() -> void:
-	for each in Manager.multiplayer_manager.players:
-		_spawn_one_player(each)
-		
+	for each in Manager.mpm.players:
+		_spawn_one_player(each) 
 
+
+func respawn_player(_data:PlayerData) -> void:
+	if _data.active_brawler.current_life_count > 0:
+		await get_tree().create_timer(1).timeout
+		_spawn_one_player(_data)
+
+
+# TODO: Make sure to flush brawler data from the player data when ending a match
 func _spawn_one_player(_data:PlayerData) -> void:
 	if spawn_points.is_empty(): spawn_points = _get_spawn_points()
 	var point:SpawnPoint = _get_spawn_point(_data.player_id)
-	var brawler_data:BrawlerData = _get_brawler_data_from_id(_data.brawler_id)
-
+	var brawler_data:BrawlerData
+	if _data.active_brawler != null: brawler_data = _data.active_brawler
+	else: brawler_data = _get_brawler_data_from_id(_data.brawler_id).get_duplicate()
+		
 	if brawler_data != null and point != null:
+		_data.active_brawler = brawler_data
 		var new_brawler:Brawler = load(brawler_data.path).instantiate()
 		new_brawler.set_data(brawler_data, _data)
+		new_brawler.data.setup_brawler()
 		add_child(new_brawler)
 		if not new_brawler.is_node_ready():
 			await new_brawler.ready
 		new_brawler.global_position = point.global_position
+		new_brawler.name = brawler_data.id + "_0"
 		spawned_brawlers.append(new_brawler)
 		new_brawler.set_state(Brawler.State.RESPAWN)
 	else:
@@ -49,7 +61,7 @@ func _get_spawn_point(_player_id:int) -> SpawnPoint:
 	if spawn_points.is_empty(): 
 		Debug.error("No spawn points in manager")
 		return null
-	
+
 	for each in spawn_points:
 		if each.player_id == _player_id: return each
 	
@@ -61,9 +73,10 @@ func _get_brawler_data_from_id(_id:String) -> BrawlerData:
 	if brawler_datas.is_empty():
 		Debug.error("No bralwer datas set in Spawn Manager")
 		return null
-	
+
 	for each in brawler_datas:
-		if each.id == _id: return each
+		if each.id == _id: 
+			return each
 	
 	Debug.error("No Braler Data found for id: %s" % _id)
 	return null
