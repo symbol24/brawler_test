@@ -1,0 +1,60 @@
+{
+	"categories": [
+		{
+			"uuid": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"title": "Task",
+			"color": "70bafa"
+		},
+		{
+			"uuid": "a07eb825-5127-44fe-a1ad-c890edad8a97",
+			"title": "backlog",
+			"color": "86bd87"
+		},
+		{
+			"uuid": "25750e2c-81a1-4398-90f9-8004f63851fa",
+			"title": "bug",
+			"color": "e55c5c"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "1006e1a3-e5d4-46d1-bce9-d47c47b7bcec",
+			"title": "Todo",
+			"tasks": [
+				"6d435d47-99de-451f-b5f6-b14401590b77"
+			]
+		},
+		{
+			"uuid": "c17bfcdf-a7af-4917-a140-efe0a5d136d6",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "8e4bca01-674a-430b-a3cf-0dd88323f592",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "6d435d47-99de-451f-b5f6-b14401590b77",
+			"title": "Add clash parry",
+			"description": "",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"1006e1a3-e5d4-46d1-bce9-d47c47b7bcec"
+			],
+			[
+				"c17bfcdf-a7af-4917-a140-efe0a5d136d6"
+			],
+			[
+				"8e4bca01-674a-430b-a3cf-0dd88323f592"
+			]
+		]
+	}
+}
