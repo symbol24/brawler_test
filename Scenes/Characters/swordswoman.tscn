@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dy86jtt6pw10h"]
+[gd_scene load_steps=28 format=3 uid="uid://dy86jtt6pw10h"]
 
 [ext_resource type="Script" path="res://Code/Characters/brawler.gd" id="1_l1sbu"]
-[ext_resource type="Texture2D" uid="uid://we6qleae0c6n" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite without VFX.png" id="1_lpun4"]
+[ext_resource type="Texture2D" uid="uid://bvovoo3pttf52" path="res://Textures/Characters/Swordswoman/tiny swordmaster.png" id="2_4rg22"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/move.gd" id="3_m4dfj"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/jump.gd" id="4_xp27b"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/sw_attack.gd" id="5_plkbi"]
-[ext_resource type="Texture2D" uid="uid://b4fgaiifdjn5c" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite with VFX.png" id="5_v7maw"]
 [ext_resource type="Script" path="res://Code/Characters/Actions/dash.gd" id="6_aayvo"]
 [ext_resource type="PackedScene" uid="uid://bmskyxi7l14x8" path="res://Scenes/Characters/brawler_hit_box.tscn" id="8_85vof"]
 [ext_resource type="Script" path="res://Code/Utilities/attack_area.gd" id="9_02j35"]
@@ -50,7 +49,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -139,7 +138,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_v7maw")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -233,7 +232,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_v7maw")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -304,7 +303,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_efu8e"]
 resource_name = "attack3"
 length = 0.7
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -315,7 +314,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_v7maw")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -360,7 +359,7 @@ tracks/4/path = NodePath("sw_attack/AttackArea/attack3:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -397,7 +396,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -463,7 +462,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -529,7 +528,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -594,7 +593,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -662,18 +661,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [17]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -7)]
-}
 
 [sub_resource type="Animation" id="Animation_ijrkq"]
 resource_name = "roll"
@@ -689,7 +676,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -754,7 +741,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -792,18 +779,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_x7ia3"]
 resource_name = "teleport_out"
@@ -819,7 +794,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -860,7 +835,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_pxrqw"]
 resource_name = "walk"
-length = 0.8
+length = 0.7
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -873,7 +848,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -906,10 +881,10 @@ tracks/3/path = NodePath("sprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xx5rg"]
@@ -926,7 +901,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_lpun4")]
+"values": [ExtResource("2_4rg22")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -966,8 +941,8 @@ script = ExtResource("1_l1sbu")
 
 [node name="sprite" type="Sprite2D" parent="." groups=["flip"]]
 unique_name_in_owner = true
-position = Vector2(8, -20)
-texture = ExtResource("1_lpun4")
+position = Vector2(0, -24)
+texture = ExtResource("2_4rg22")
 hframes = 17
 vframes = 10
 
@@ -991,6 +966,7 @@ button = "dash"
 delay_input = 2.0
 
 [node name="sw_attack" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_plkbi")
 attack1_name = "attack1"
 attack2_name = "attack2"

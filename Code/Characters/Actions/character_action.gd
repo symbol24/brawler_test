@@ -3,7 +3,7 @@ class_name BrawlerAction extends Node2D
 @export var button:String
 @export var delay_input:float = 0.3
 
-var parent:CharacterBody2D
+var parent:Brawler
 var can_action:bool = true
 var action_timer:float = delay_input:
 	set(value):

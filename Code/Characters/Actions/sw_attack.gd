@@ -54,6 +54,7 @@ func _play_attack(_attack_name:String) -> void:
 			can_action = false
 			delay = attack_data.post_attack_delay
 			parent.set_state(attack_data.state)
+			parent.can_change_state = false
 			parent.sprite.position.x = attack_data.x_offset if not parent.sprite.flip_h else -attack_data.x_offset
 			if attack_data.has_move:
 				attack_active_time = attack_data.move_active_time
@@ -67,13 +68,11 @@ func _play_attack(_attack_name:String) -> void:
 
 func _animation_ended(anim:String) -> void:
 	if anim in [attack1_name, attack2_name, attack3_name]:
-		parent.cant_change_state = false
-		parent.set_state(Brawler.State.IDLE)
 		parent.sprite.position.x = sprite_x_pos if not parent.sprite.flip_h else -sprite_x_pos
-		await get_tree().create_timer(delay).timeout
-		can_action = true
+		parent.can_change_state = true
+		parent.set_state(Brawler.State.IDLE)
+		get_tree().create_timer(delay).timeout.connect(_end_action)
 
 
-func _animation_changed(old:String, _new:String) -> void:
-	if old == attack1_name:
-		can_action = true
+func _end_action() -> void:
+	can_action = true

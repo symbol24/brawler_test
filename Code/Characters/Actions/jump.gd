@@ -73,13 +73,9 @@ func _input(event: InputEvent) -> void:
 				if event.is_action_released(button):
 					jump_charging = false
 					precharge_wait = false
-					parent.can_move_on_x = true
-					parent.cant_change_state = false
 					_trigger_action()
 		else:
 			if event.is_action_pressed(button):
-				parent.can_move_on_x = true
-				parent.cant_change_state = false
 				_trigger_action()
 
 

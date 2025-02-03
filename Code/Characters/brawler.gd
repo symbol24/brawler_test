@@ -2,6 +2,8 @@ class_name Brawler extends CharacterBody2D
 
 
 const RESPAWNIMMUNITYTIME:float = 3.0
+const HITFLASHTIME:float = 0.15
+
 
 enum State {
 			NOTHING = -1,
@@ -32,7 +34,7 @@ var current_state:State = State.IDLE:
 	set(value):
 		current_state = value
 		if Debug.active: _debug_state_update()
-var cant_change_state:bool = false
+var can_change_state:bool = true
 var can_move_on_x:bool = true
 var can_move_on_y:bool = true
 var can_move:bool = true
@@ -89,7 +91,7 @@ func add_velocity_y(value:float = 0.0) -> void:
 
 
 func set_state(new_state:State) -> void:
-	if not cant_change_state:
+	if can_change_state:
 		current_state = new_state
 		var prev_anim:String = current_animation
 		match current_state:
@@ -103,7 +105,6 @@ func set_state(new_state:State) -> void:
 			State.PREJUMP:
 				if current_animation != "prejump":
 					current_animation = "prejump"
-					cant_change_state = true
 					can_flip = false
 			State.JUMP:
 				if current_animation != "jump":
@@ -116,38 +117,34 @@ func set_state(new_state:State) -> void:
 			State.ATTACK1:
 				if current_animation != "attack1":
 					current_animation = "attack1"
-					cant_change_state = true
 					can_flip = false
 			State.ATTACK2:
 				if current_animation != "attack2":
 					current_animation = "attack2"
-					cant_change_state = true
 					can_flip = false
 			State.ATTACK3:
 				if current_animation != "attack3":
 					current_animation = "attack3"
-					cant_change_state = true
 					can_flip = false
 			State.DEATH:
 				if current_animation != "death":
 					current_animation = "death"
-					cant_change_state = true
+					can_change_state = false
 					can_flip = false
 			State.TELEPORTOUT:
 				if current_animation != "teleport_out":
 					current_animation = "teleport_out"
-					cant_change_state = true
+					can_change_state = false
 					can_flip = false
 			State.RESPAWN:
 				if current_animation != "teleport_in":
 					current_animation = "teleport_in"
-					cant_change_state = true
+					can_change_state = false
 					can_flip = false
 					get_tree().create_timer(data.spawn_in_delay).timeout.connect(_spawn_delay_end)
 			State.DASH:
 				if current_animation != "dash":
 					current_animation = "dash"
-					cant_change_state = true
 					can_flip = false
 			_:
 				if current_animation != "idle":
@@ -168,7 +165,7 @@ func _set_animation(anim_name:String) -> void:
 
 func _update_state() -> State:
 	var new:State = current_state
-	if not cant_change_state:
+	if not can_change_state:
 		if is_on_floor() and (velocity.x >= 1 or velocity.x <= -1):
 			new = State.WALK
 		elif is_on_floor() and velocity.x < 0.1 and velocity.x > -0.1 and current_state != State.IDLE:
@@ -210,7 +207,7 @@ func _flip(array:Array = [], is_flipped:bool = false) -> bool:
 
 
 func _spawn_delay_end() -> void:
-	cant_change_state = false
+	can_change_state = false
 	set_state(State.IDLE)
 	active = true
 	if data.current_life_count < data.starting_life:
@@ -235,21 +232,25 @@ func _death(_brawler_data:BrawlerData) -> void:
 	if _brawler_data == data:
 		active = false
 		set_state(State.DEATH)
+		can_change_state = false
 
 
 func _hit(_brawler_data:BrawlerData) -> void:
 	if _brawler_data == data:
 		var tween:Tween = create_tween()
-		tween.tween_property(self, "modulate", Color.RED, 0.1)
-		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.RED, HITFLASHTIME)
+		tween.tween_property(self, "modulate", Color.WHITE, HITFLASHTIME)
 
 
 func _animation_ended(anim_name:String) -> void:
 	match anim_name:
 		"death":
 			await get_tree().create_timer(1).timeout
-			cant_change_state = false
+			can_change_state = true
 			set_state(State.TELEPORTOUT)
+		"teleport_in":
+			can_change_state = true
+			set_state(State.IDLE)
 		"teleport_out":
 			Manager.spawn_manager.respawn_player(player_data)
 			queue_free()
@@ -260,35 +261,5 @@ func _animation_ended(anim_name:String) -> void:
 
 # DEBUG SECTION
 
-func _get_state_as_string() -> String:
-	var result:String = ""
-	match current_state:
-		State.IDLE:
-			result = "IDLE"
-		State.WALK:
-			result = "WALK"
-		State.PREJUMP:
-			result = "PREJUMP"
-		State.JUMP:
-			result = "JUMP"
-		State.FALL:
-			result = "FALL"
-		State.ATTACK1:
-			result = "ATTACK1"
-		State.ATTACK2:
-			result = "ATTACK2"
-		State.ATTACK3:
-			result = "ATTACK3"
-		State.DEATH:
-			result = "DEATH"
-		State.TELEPORTOUT:
-			result = "TELEPORTOUT"
-		State.RESPAWN:
-			result = "RESPAWN"
-		_:
-			pass
-	return result
-
-
 func _debug_state_update() -> void:
-	Signals.DebugUpdateBoxText.emit(player_data.player_id, "state", "State: " + _get_state_as_string())
+	Signals.DebugUpdateBoxText.emit(player_data.player_id, "state", "State: " + State.keys()[current_state])
