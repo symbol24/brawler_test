@@ -21,7 +21,8 @@
 			"uuid": "1006e1a3-e5d4-46d1-bce9-d47c47b7bcec",
 			"title": "Todo",
 			"tasks": [
-				"6d435d47-99de-451f-b5f6-b14401590b77"
+				"6d435d47-99de-451f-b5f6-b14401590b77",
+				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c"
 			]
 		},
 		{
@@ -32,13 +33,29 @@
 		{
 			"uuid": "8e4bca01-674a-430b-a3cf-0dd88323f592",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"fa4f19b9-81a8-488b-8455-7671ab9d5be9"
+			]
 		}
 	],
 	"tasks": [
 		{
 			"uuid": "6d435d47-99de-451f-b5f6-b14401590b77",
 			"title": "Add clash parry",
+			"description": "",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "7b54be1f-b589-4127-aeb7-5aa1f84cbf0c",
+			"title": "add end lfow when someone win",
+			"description": "",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "fa4f19b9-81a8-488b-8455-7671ab9d5be9",
+			"title": "add dash",
 			"description": "",
 			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
 			"steps": []

@@ -1,15 +1,12 @@
 class_name Move extends BrawlerAction
 
 
+const FRICTION:float = 1500.0
+const ACCELERATION:float = 1000.0
+const SPEED:float = 200.0
+
+
 var display_debug:bool = true
-
-var friction:float:
-	get:return parent.data.friction if parent and parent.data else 700
-var acceleration:float:
-	get:return parent.data.acceleration if parent and parent.data else 1100
-var speed:float:
-	get:return parent.data.speed if parent and parent.data else 200
-
 var direction:float = 0.0
 
 
@@ -20,6 +17,7 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if parent.active:
+		parent.direction = direction
 		parent.set_velocity_x(_get_new_x(parent.velocity.x, direction, delta))
 		_state_check()
 		if display_debug: _debug_move_output()
@@ -30,9 +28,9 @@ func _get_new_x(_old_x:float = 0.0, _direction:float = 0.0, delta:float = 0.0) -
 	var air_multi:float = parent.data.air_multiplier if parent.velocity.y >= 0.1 else 1.0
 
 	if _direction > 0.1 or _direction < -0.1:
-		new_x = move_toward(_old_x, _direction * speed * air_multi, delta * acceleration)
+		new_x = move_toward(_old_x, _direction * SPEED * air_multi, delta * ACCELERATION)
 	elif _direction < 0.1 and _direction > -0.1:
-		new_x = move_toward(_old_x, 0, delta * friction)
+		new_x = move_toward(_old_x, 0, delta * FRICTION)
 
 	return new_x
 

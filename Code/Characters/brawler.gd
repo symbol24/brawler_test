@@ -16,6 +16,7 @@ enum State {
 			TELEPORTOUT = 8,
 			RESPAWN = 9,
 			PREJUMP = 10,
+			DASH,
 		}
 
 
@@ -33,8 +34,10 @@ var current_state:State = State.IDLE:
 		if Debug.active: _debug_state_update()
 var cant_change_state:bool = false
 var can_move_on_x:bool = true
+var can_move_on_y:bool = true
+var can_move:bool = true
 var current_animation:String = ""
-
+var direction:float = 0.0
 var to_flip:Array = []
 var flipped:bool = false
 var can_flip:bool = true
@@ -53,10 +56,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	#set_state(_update_state())
 	if can_flip: flipped = _flip(to_flip, flipped)
-	if not can_move_on_x: velocity.x = 0
-	move_and_slide()
+	if not can_move_on_x: velocity.x = 0.0
+	if not can_move_on_y: velocity.y = 0.0
+	if can_move:
+		move_and_slide()
 
 
 func set_data(_data:BrawlerData, _player_data:PlayerData) -> void:
@@ -140,6 +144,11 @@ func set_state(new_state:State) -> void:
 					cant_change_state = true
 					can_flip = false
 					get_tree().create_timer(data.spawn_in_delay).timeout.connect(_spawn_delay_end)
+			State.DASH:
+				if current_animation != "dash":
+					current_animation = "dash"
+					cant_change_state = true
+					can_flip = false
 			_:
 				if current_animation != "idle":
 					current_animation = "idle"
@@ -154,8 +163,6 @@ func get_can_be_hit() -> bool:
 
 func _set_animation(anim_name:String) -> void:
 	#Debug.log("Animator received ", anim_name)
-	animator.play("RESET")
-	animator.stop()
 	animator.play(anim_name)
 
 

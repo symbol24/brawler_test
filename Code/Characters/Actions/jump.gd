@@ -4,21 +4,15 @@ class_name Jump extends BrawlerAction
 const JUMPCHARGEDELAY:float = 0.5
 const MINIMUMJUMPCHARGEVALUE:float = 0.0
 const PRECHARGEDELAY:float = 0.2
+const TIMETOPEAK:float = 0.3
+const TIMETODESCEND:float = 0.3
+const JUMPHEIGHT:float = 32.0
+const JUMPCOUNT:int = 2
 
 
 @export var coyote_delay:float = 0.3
 @export var input_delay:float = 0.15
-
-var jump_count:int:
-	get: return parent.data.jump_count if parent and parent.data else 2
-var time_to_peak:float:
-	get: return parent.data.time_to_peak if parent and parent.data else 0.3
-var time_to_descend:float:
-	get: return parent.data.time_to_descend if parent and parent.data else 0.4
-var jump_height:int:
-	get: return parent.data.jump_height if parent and parent.data else 32
-var jump_charge_delay:float:
-	get: return parent.data.jump_charge_delay if parent and parent.data else 1.0
+@export var use_charge:bool = false
 
 var jump_available:bool:
 	get: return current_jump_count > 0
@@ -28,11 +22,11 @@ var current_jump_count:int = 2:
 		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "jump_count", "current_jump_count = %d" % current_jump_count)
 
 var gravity:float:
-	get: return (2*jump_height)/pow(time_to_peak,2)
+	get: return (2*JUMPHEIGHT)/pow(TIMETOPEAK,2)
 var fall_gravity:float:
-	get: return (2*jump_height)/pow(time_to_descend,2)
+	get: return (2*JUMPHEIGHT)/pow(TIMETODESCEND,2)
 var jump_speed:float:
-	get: return gravity * time_to_peak
+	get: return gravity * TIMETOPEAK
 
 var active_coyote:bool = false
 var coyote_timer:float = 0.0:
@@ -63,25 +57,30 @@ var precharge_wait:bool = false
 
 func _input(event: InputEvent) -> void:
 	if _get_can_action(event):
-		if parent.velocity.x != 0.0 and not precharge_wait and not jump_charging:
-			if event.is_action_released(button):
-				_trigger_action()
+		if use_charge:
+			if parent.velocity.x != 0.0 and not precharge_wait and not jump_charging:
+				if event.is_action_released(button):
+					_trigger_action()
+			else:
+				if event.is_action_pressed(button):
+					if not precharge_wait and not jump_charging:
+						precharge_wait = true
+				
+					elif precharge_wait and not jump_charging:
+						parent.set_state(Brawler.State.PREJUMP)
+						jump_charging = true
+				
+				if event.is_action_released(button):
+					jump_charging = false
+					precharge_wait = false
+					parent.can_move_on_x = true
+					parent.cant_change_state = false
+					_trigger_action()
 		else:
 			if event.is_action_pressed(button):
-				if not precharge_wait and not jump_charging:
-					precharge_wait = true
-			
-				elif precharge_wait and not jump_charging:
-					parent.set_state(Brawler.State.PREJUMP)
-					jump_charging = true
-			
-			if event.is_action_released(button):
-				jump_charging = false
-				precharge_wait = false
 				parent.can_move_on_x = true
 				parent.cant_change_state = false
 				_trigger_action()
-
 
 
 func _ready() -> void:
@@ -125,7 +124,7 @@ func _trigger_action() -> void:
 
 func _land() -> void:
 	landed = true
-	current_jump_count = jump_count
+	current_jump_count = JUMPCOUNT
 	active_coyote = false
 	coyote_timer = 0.0
 	parent.set_state(Brawler.State.IDLE)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dy86jtt6pw10h"]
+[gd_scene load_steps=29 format=3 uid="uid://dy86jtt6pw10h"]
 
 [ext_resource type="Script" path="res://Code/Characters/brawler.gd" id="1_l1sbu"]
 [ext_resource type="Texture2D" uid="uid://we6qleae0c6n" path="res://Textures/Characters/Swordswoman/tiny swordmaster sprite without VFX.png" id="1_lpun4"]
@@ -912,12 +912,42 @@ tracks/3/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_xx5rg"]
+resource_name = "dash"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_lpun4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(0, 8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p8f8v"]
 _data = {
 "RESET": SubResource("Animation_tnfbg"),
 "attack1": SubResource("Animation_ntr34"),
 "attack2": SubResource("Animation_uk3di"),
 "attack3": SubResource("Animation_efu8e"),
+"dash": SubResource("Animation_xx5rg"),
 "death": SubResource("Animation_e8l5r"),
 "fall": SubResource("Animation_lvjlk"),
 "idle": SubResource("Animation_51c3l"),
@@ -929,7 +959,7 @@ _data = {
 "walk": SubResource("Animation_pxrqw")
 }
 
-[node name="TestCharacter" type="CharacterBody2D"]
+[node name="SwordsWoman" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 65
 script = ExtResource("1_l1sbu")
@@ -958,6 +988,7 @@ button = "jump"
 [node name="dash" type="Node2D" parent="."]
 script = ExtResource("6_aayvo")
 button = "dash"
+delay_input = 2.0
 
 [node name="sw_attack" type="Node2D" parent="."]
 script = ExtResource("5_plkbi")

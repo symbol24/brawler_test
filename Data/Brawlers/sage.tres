@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_40yl5")
-id = ""
+id = "sage"
 path = ""
-starting_life = -1
+starting_life = 3
 starting_hp = 1
 friction = 700.0
 acceleration = 1100.0
