@@ -18,6 +18,7 @@ func _build_player_panel(player_data:PlayerData) -> void:
 		new.setup_lives(player_data.active_brawler.lives_icon[player_data.player_id], player_data.active_brawler.current_life_count)
 		new.setup_color(player_data.active_brawler.colors[player_data.player_id])
 		new.player_stuff.text = tr(player_data.active_brawler.id)
+		new.name = "player_panel_" + player_data.active_brawler.id + "_" + str(player_data.player_id)
 		match player_data.player_id:
 			0:
 				new.set_anchors_and_offsets_preset(PRESET_TOP_LEFT)
