@@ -90,7 +90,7 @@ func add_velocity_y(value:float = 0.0) -> void:
 		velocity.y += value
 
 
-func set_state(new_state:State) -> void:
+func set_state(new_state:State) -> bool:
 	if can_change_state:
 		current_state = new_state
 		var prev_anim:String = current_animation
@@ -152,6 +152,8 @@ func set_state(new_state:State) -> void:
 		
 		if current_animation != prev_anim:
 			_set_animation(current_animation)
+	
+	return can_change_state
 
 
 func get_can_be_hit() -> bool:

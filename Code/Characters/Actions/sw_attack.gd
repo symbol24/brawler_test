@@ -50,11 +50,10 @@ func _process(delta: float) -> void:
 func _play_attack(_attack_name:String) -> void:
 	if can_action:
 		var attack_data:AttackData = parent.data.get_attack_by_id(_attack_name)
-		if attack_data:
+		if attack_data and parent.set_state(attack_data.state):
+			parent.can_change_state = false
 			can_action = false
 			delay = attack_data.post_attack_delay
-			parent.set_state(attack_data.state)
-			parent.can_change_state = false
 			parent.sprite.position.x = attack_data.x_offset if not parent.sprite.flip_h else -attack_data.x_offset
 			if attack_data.has_move:
 				attack_active_time = attack_data.move_active_time

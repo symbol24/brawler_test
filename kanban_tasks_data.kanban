@@ -41,9 +41,7 @@
 		{
 			"uuid": "c17bfcdf-a7af-4917-a140-efe0a5d136d6",
 			"title": "Doing",
-			"tasks": [
-				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "8e4bca01-674a-430b-a3cf-0dd88323f592",
@@ -51,7 +49,9 @@
 			"tasks": [
 				"fa4f19b9-81a8-488b-8455-7671ab9d5be9",
 				"c9d16ddd-0c04-4a79-9c00-b6884fdd27f2",
-				"9fe09fdf-ec2f-4e12-a8dc-291892be35b9"
+				"9fe09fdf-ec2f-4e12-a8dc-291892be35b9",
+				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c",
+				"35418e84-d2d9-4328-b57c-f80c2ca21c92"
 			]
 		}
 	],
@@ -186,6 +186,13 @@
 			"uuid": "7c856f26-0866-45d5-9cc5-cdfae1fcfc7d",
 			"title": "create button prompts that toggle for each controller if need be",
 			"description": "main UI prompts are bound to first controller used",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "35418e84-d2d9-4328-b57c-f80c2ca21c92",
+			"title": "refactor attack so they dont use animations as triggers for functions / only added checks that state was changed",
+			"description": "",
 			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
 			"steps": []
 		}

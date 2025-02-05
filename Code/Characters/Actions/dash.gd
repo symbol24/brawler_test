@@ -28,18 +28,18 @@ func _process(delta: float) -> void:
 
  
 func _trigger_action() -> void:
-	can_action = false
-	dashing = true
-	action_timer = delay_input + dash_time
-	parent.can_move_on_y = false
-	parent.set_state(Brawler.State.DASH)
-	parent.can_change_state = false
-	var speed:float = DASHSPEED
-	if parent.velocity.x != 0.0 and parent.direction < 0.0: speed = -DASHSPEED
-	elif parent.velocity.x == 0.0:
-		speed = -DASHSPEED if parent.sprite.flip_h else DASHSPEED
-	parent.set_velocity_x(speed)
-	#Debug.log("trigger dash")
+	if parent.set_state(Brawler.State.DASH):
+		can_action = false
+		dashing = true
+		action_timer = delay_input + dash_time
+		parent.can_move_on_y = false
+		parent.can_change_state = false
+		var speed:float = DASHSPEED
+		if parent.velocity.x != 0.0 and parent.direction < 0.0: speed = -DASHSPEED
+		elif parent.velocity.x == 0.0:
+			speed = -DASHSPEED if parent.sprite.flip_h else DASHSPEED
+		parent.set_velocity_x(speed)
+		#Debug.log("trigger dash")
 
 
 func _end_dash() -> void:
