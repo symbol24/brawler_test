@@ -4,6 +4,7 @@ class_name Move extends BrawlerAction
 const FRICTION:float = 1500.0
 const ACCELERATION:float = 1000.0
 const SPEED:float = 200.0
+const AIRMULTIPLIER:float = 0.7
 
 
 var display_debug:bool = true
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 
 func _get_new_x(_old_x:float = 0.0, _direction:float = 0.0, delta:float = 0.0) -> float:
 	var new_x:float = _old_x
-	var air_multi:float = parent.data.air_multiplier if parent.velocity.y >= 0.1 else 1.0
+	var air_multi:float = AIRMULTIPLIER if parent.velocity.y >= 0.1 else 1.0
 
 	if _direction > 0.1 or _direction < -0.1:
 		new_x = move_toward(_old_x, _direction * SPEED * air_multi, delta * ACCELERATION)

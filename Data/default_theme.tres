@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://deju6k4h70qx1"]
+
+[resource]
+Label/font_sizes/font_size = 8
+PlayerNamePU/base_type = &"Label"
+PlayerNamePU/font_sizes/font_size = 8

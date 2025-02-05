@@ -9,6 +9,7 @@ signal DebugDisplayInfo(player_id:int, display:bool)
 
 # Manager
 signal StartMPM()
+signal ManagerReady(id:String)
 
 
 # Main Menu
@@ -27,6 +28,7 @@ signal SceneLoadingComplete(level:Level)
 # UI
 signal ToggleLoadingScreen(display:bool)
 signal UpdatePlayerLifeCount(brawler_data:BrawlerData)
+signal ToggleUi(uid:String, display:bool)
 
 
 # SpawnManager
@@ -36,3 +38,4 @@ signal SpawnPlayer(player_data:PlayerData)
 # Brawlers
 signal BrawlerDeath(brawler:BrawlerData)
 signal BrawlerHit(brawler:BrawlerData)
+signal BrawlerReady(player:PlayerData)

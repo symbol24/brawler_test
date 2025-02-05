@@ -56,6 +56,10 @@ spawn_point=""
 level=""
 player_ready_point=""
 
+[gui]
+
+theme/custom="res://Data/default_theme.tres"
+
 [input]
 
 up={

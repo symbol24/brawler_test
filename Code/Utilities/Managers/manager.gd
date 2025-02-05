@@ -69,6 +69,8 @@ func _complete_load() -> void:
 	if new is DataManager:
 		data_manager = new
 		Debug.log("Data manager loaded")
+		Signals.ManagerReady.emit("data_manager")
 	elif new is SpawnManager:
 		spawn_manager = new
 		Debug.log("Spawn manager loaded")
+		Signals.ManagerReady.emit("spawn_manager")

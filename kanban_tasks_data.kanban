@@ -36,7 +36,9 @@
 			"uuid": "8e4bca01-674a-430b-a3cf-0dd88323f592",
 			"title": "Done",
 			"tasks": [
-				"fa4f19b9-81a8-488b-8455-7671ab9d5be9"
+				"fa4f19b9-81a8-488b-8455-7671ab9d5be9",
+				"c9d16ddd-0c04-4a79-9c00-b6884fdd27f2",
+				"9fe09fdf-ec2f-4e12-a8dc-291892be35b9"
 			]
 		}
 	],
@@ -72,6 +74,20 @@
 		{
 			"uuid": "54e510b7-5995-4095-8036-41eddbb50560",
 			"title": "add invulnerability time time to dash",
+			"description": "",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "c9d16ddd-0c04-4a79-9c00-b6884fdd27f2",
+			"title": "Add ingame overlay",
+			"description": "",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "9fe09fdf-ec2f-4e12-a8dc-291892be35b9",
+			"title": "add player connected life displays",
 			"description": "",
 			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
 			"steps": []

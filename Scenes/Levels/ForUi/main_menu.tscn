@@ -31,6 +31,7 @@ size = Vector2(32, 48)
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("ready_points") groups=["level"]]
 script = ExtResource("1_8xmd1")
 ready_points = [NodePath("ready_points/player_ready_point"), NodePath("ready_points/player_ready_point2"), NodePath("ready_points/player_ready_point3"), NodePath("ready_points/player_ready_point4")]
+display_player_ui = false
 
 [node name="ground and walls" type="StaticBody2D" parent="."]
 collision_mask = 43

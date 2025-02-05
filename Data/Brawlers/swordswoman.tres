@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="BrawlerData" load_steps=6 format=3 uid="uid://7cvrkxher4qc"]
+[gd_resource type="Resource" script_class="BrawlerData" load_steps=10 format=3 uid="uid://7cvrkxher4qc"]
 
 [ext_resource type="Script" path="res://Code/Utilities/attack_data.gd" id="1_g7iqu"]
 [ext_resource type="Script" path="res://Code/Characters/brawler_data.gd" id="1_rlpl7"]
 [ext_resource type="Resource" uid="uid://cru7f5ihegmeq" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack1_data.tres" id="2_3t1b4"]
 [ext_resource type="Resource" uid="uid://b8dpyo8sq07xv" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack2_data.tres" id="3_s6bq1"]
 [ext_resource type="Resource" uid="uid://bv08mnxsnstvc" path="res://Data/Brawlers/Swordswoman/AttackDatas/attack3_data.tres" id="4_i3frd"]
+[ext_resource type="Texture2D" uid="uid://bkjpwl4olae3f" path="res://Textures/Characters/Swordswoman/player_1_swordswoman_lives_icons.png" id="5_i2f0u"]
+[ext_resource type="Texture2D" uid="uid://cq3keg7rk1f1y" path="res://Textures/Characters/Swordswoman/player_2_swordswoman_lives_icons.png" id="6_ttdoq"]
+[ext_resource type="Texture2D" uid="uid://co2akdgxnqqrb" path="res://Textures/Characters/Swordswoman/player_3_swordswoman_lives_icons.png" id="7_300su"]
+[ext_resource type="Texture2D" uid="uid://bx6dwj5h03554" path="res://Textures/Characters/Swordswoman/player_4_swordswoman_lives_icons.png" id="8_4wns1"]
 
 [resource]
 script = ExtResource("1_rlpl7")
@@ -23,3 +27,5 @@ starting_jump_height = 36
 starting_extra_jump_height = 16
 attacks = Array[ExtResource("1_g7iqu")]([ExtResource("2_3t1b4"), ExtResource("3_s6bq1"), ExtResource("4_i3frd")])
 spawn_in_delay = 0.5
+colors = Array[Color]([Color(0.858824, 0.733333, 0.231373, 1), Color(0.2322, 0.86, 0.26359, 1), Color(0.2322, 0.744903, 0.86, 1), Color(0.86, 0.2322, 0.45193, 1)])
+lives_icon = Array[CompressedTexture2D]([ExtResource("5_i2f0u"), ExtResource("6_ttdoq"), ExtResource("7_300su"), ExtResource("8_4wns1")])

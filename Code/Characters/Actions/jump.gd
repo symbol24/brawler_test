@@ -8,6 +8,7 @@ const TIMETOPEAK:float = 0.3
 const TIMETODESCEND:float = 0.3
 const JUMPHEIGHT:float = 32.0
 const JUMPCOUNT:int = 2
+const EXTRAHEIGHT:float = 8.0
 
 
 @export var coyote_delay:float = 0.3
@@ -110,7 +111,7 @@ func _trigger_action() -> void:
 		can_action = false
 		landed = false
 		parent.set_state(Brawler.State.JUMP)
-		var final_jump_speed:float = -jump_speed if not parent.is_on_floor() else -(jump_speed + (parent.data.extra_jump_height * jump_charge_percent))
+		var final_jump_speed:float = -jump_speed if not parent.is_on_floor() else -(jump_speed + (EXTRAHEIGHT * jump_charge_percent))
 		if Debug.active: Signals.DebugUpdateBoxText.emit(parent.player_data.player_id, "jump", "final jump speed: %10.2f" % final_jump_speed)
 		parent.set_velocity_y(final_jump_speed)
 		current_jump_count -= 1

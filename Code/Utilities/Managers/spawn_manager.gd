@@ -37,12 +37,13 @@ func _spawn_one_player(_data:PlayerData) -> void:
 		new_brawler.set_data(brawler_data, _data)
 		new_brawler.data.setup_brawler()
 		add_child(new_brawler)
-		if not new_brawler.is_node_ready():
-			await new_brawler.ready
+		if not new_brawler.is_node_ready(): await new_brawler.ready
 		new_brawler.global_position = point.global_position
 		new_brawler.name = brawler_data.id + "_0"
 		spawned_brawlers.append(new_brawler)
 		new_brawler.set_state(Brawler.State.RESPAWN)
+		Signals.BrawlerReady.emit(_data)
+		Debug.log("Brawler %s ready." % new_brawler.name)
 	else:
 		Debug.warning("Player with id %d and selected character %s not spawned due to missing Brawler Data." % [_data.player_id, _data.brawler_id])
 
