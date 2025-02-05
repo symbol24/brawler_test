@@ -172,7 +172,7 @@ func get_can_be_hit() -> bool:
 
 
 func _set_animation(anim_name:String) -> void:
-	Debug.log("Animator received ", anim_name)
+	#Debug.log("Animator received ", anim_name)
 	animator.play(anim_name)
 
 

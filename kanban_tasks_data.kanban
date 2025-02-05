@@ -21,7 +21,6 @@
 			"uuid": "1006e1a3-e5d4-46d1-bce9-d47c47b7bcec",
 			"title": "Todo",
 			"tasks": [
-				"6d435d47-99de-451f-b5f6-b14401590b77",
 				"80e1d4ae-5a3a-4877-96b4-427c1402d70a",
 				"b2b18f31-254a-42c6-90ec-7eb1d63fada1",
 				"16c49364-bb75-43cc-9a8c-77eba6b840ad",
@@ -33,7 +32,8 @@
 				"a85253b3-d405-41c3-b637-29d4f3a6220f",
 				"eeeafdeb-ef79-4ba2-a106-97e158b43dd1",
 				"ac917a93-001a-4e0f-8b3f-56197242cd02",
-				"7c856f26-0866-45d5-9cc5-cdfae1fcfc7d"
+				"7c856f26-0866-45d5-9cc5-cdfae1fcfc7d",
+				"c0757da8-f4ac-4297-aec5-3c2ea65173e4"
 			]
 		},
 		{
@@ -51,7 +51,8 @@
 				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c",
 				"35418e84-d2d9-4328-b57c-f80c2ca21c92",
 				"79b2de1a-44b9-43af-8e08-4aff96246be3",
-				"54e510b7-5995-4095-8036-41eddbb50560"
+				"54e510b7-5995-4095-8036-41eddbb50560",
+				"6d435d47-99de-451f-b5f6-b14401590b77"
 			]
 		}
 	],
@@ -194,6 +195,13 @@
 			"title": "refactor attack so they dont use animations as triggers for functions / only added checks that state was changed",
 			"description": "",
 			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
+			"steps": []
+		},
+		{
+			"uuid": "c0757da8-f4ac-4297-aec5-3c2ea65173e4",
+			"title": "if player A presses up/down, player b presses attack, player b's attack is affected by player's A input",
+			"description": "",
+			"category": "25750e2c-81a1-4398-90f9-8004f63851fa",
 			"steps": []
 		}
 	],
