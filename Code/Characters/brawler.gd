@@ -18,7 +18,7 @@ enum State {
 			TELEPORTOUT = 8,
 			RESPAWN = 9,
 			PREJUMP = 10,
-			DASH,
+			DASH = 11,
 		}
 
 
@@ -34,16 +34,20 @@ var current_state:State = State.IDLE:
 	set(value):
 		current_state = value
 		if Debug.active: _debug_state_update()
-var can_change_state:bool = true
-var can_move_on_x:bool = true
-var can_move_on_y:bool = true
-var can_move:bool = true
+var delayed_state_change:bool = false
+var delayed_stated:State = State.NOTHING
+
 var current_animation:String = ""
 var direction:float = 0.0
 var to_flip:Array = []
 var flipped:bool = false
-var can_flip:bool = true
 
+# Conditions
+var can_change_state:bool = true
+var can_move_on_x:bool = true
+var can_move_on_y:bool = true
+var can_move:bool = true
+var can_flip:bool = true
 var can_be_hit:bool = false
 
 
@@ -58,6 +62,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if delayed_state_change: _delayed_state_change()
 	if can_flip: flipped = _flip(to_flip, flipped)
 	if not can_move_on_x: velocity.x = 0.0
 	if not can_move_on_y: velocity.y = 0.0
@@ -91,6 +96,12 @@ func add_velocity_y(value:float = 0.0) -> void:
 
 
 func set_state(new_state:State) -> bool:
+	if new_state == State.DEATH:
+		if not can_change_state:
+			delayed_state_change = true
+			delayed_stated = new_state
+			return can_change_state
+
 	if can_change_state:
 		current_state = new_state
 		var prev_anim:String = current_animation
@@ -129,7 +140,6 @@ func set_state(new_state:State) -> bool:
 			State.DEATH:
 				if current_animation != "death":
 					current_animation = "death"
-					can_change_state = false
 					can_flip = false
 			State.TELEPORTOUT:
 				if current_animation != "teleport_out":
@@ -152,7 +162,8 @@ func set_state(new_state:State) -> bool:
 		
 		if current_animation != prev_anim:
 			_set_animation(current_animation)
-	
+
+
 	return can_change_state
 
 
@@ -161,7 +172,7 @@ func get_can_be_hit() -> bool:
 
 
 func _set_animation(anim_name:String) -> void:
-	#Debug.log("Animator received ", anim_name)
+	Debug.log("Animator received ", anim_name)
 	animator.play(anim_name)
 
 
@@ -235,6 +246,7 @@ func _death(_brawler_data:BrawlerData) -> void:
 		active = false
 		set_state(State.DEATH)
 		can_change_state = false
+		can_move_on_x = false
 
 
 func _hit(_brawler_data:BrawlerData) -> void:
@@ -259,6 +271,12 @@ func _animation_ended(anim_name:String) -> void:
 		_:
 			pass
 
+
+func _delayed_state_change() -> void:
+	if can_change_state:
+		set_state(delayed_stated)
+		delayed_state_change = false
+		delayed_stated = State.NOTHING
 
 
 # DEBUG SECTION

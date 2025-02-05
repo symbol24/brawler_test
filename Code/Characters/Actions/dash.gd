@@ -29,11 +29,12 @@ func _process(delta: float) -> void:
  
 func _trigger_action() -> void:
 	if parent.set_state(Brawler.State.DASH):
+		parent.can_move_on_y = false
+		parent.can_change_state = false
+		parent.can_be_hit = false
 		can_action = false
 		dashing = true
 		action_timer = delay_input + dash_time
-		parent.can_move_on_y = false
-		parent.can_change_state = false
 		var speed:float = DASHSPEED
 		if parent.velocity.x != 0.0 and parent.direction < 0.0: speed = -DASHSPEED
 		elif parent.velocity.x == 0.0:
@@ -47,4 +48,5 @@ func _end_dash() -> void:
 	dashing = false
 	parent.can_move_on_y = true
 	parent.can_change_state = true
+	parent.can_be_hit = true
 	parent.set_state(Brawler.State.IDLE)
