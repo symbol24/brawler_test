@@ -2,5 +2,8 @@
 
 [resource]
 Label/font_sizes/font_size = 8
+MatchRersltLabel/base_type = &"Label"
+MatchRersltLabel/colors/font_color = Color(1, 1, 1, 1)
+MatchRersltLabel/font_sizes/font_size = 24
 PlayerNamePU/base_type = &"Label"
 PlayerNamePU/font_sizes/font_size = 8

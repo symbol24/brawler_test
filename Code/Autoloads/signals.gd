@@ -39,3 +39,7 @@ signal SpawnPlayer(player_data:PlayerData)
 signal BrawlerDeath(brawler:BrawlerData)
 signal BrawlerHit(brawler:BrawlerData)
 signal BrawlerReady(player:PlayerData)
+
+
+# Gamemodes
+signal MatchEnd()

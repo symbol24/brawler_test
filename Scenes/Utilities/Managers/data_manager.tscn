@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8l7ha3i3xfmn"]
+[gd_scene load_steps=8 format=3 uid="uid://b8l7ha3i3xfmn"]
 
 [ext_resource type="Script" path="res://Code/Utilities/Managers/data_manager.gd" id="1_f7slf"]
 [ext_resource type="PackedScene" uid="uid://nbw5y4006u8t" path="res://Scenes/Ui/player_ui.tscn" id="2_hrjet"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dwxxpydb5lukg" path="res://Scenes/Ui/MainMenu/ready_sign.tscn" id="3_m75cl"]
 [ext_resource type="PackedScene" uid="uid://c0xvwrsmc667o" path="res://Scenes/Utilities/Managers/multiplayer_manager.tscn" id="4_c73j5"]
 [ext_resource type="PackedScene" uid="uid://c4q3yt7aqk2bn" path="res://Scenes/Ui/player_panel.tscn" id="4_ewpvc"]
+[ext_resource type="PackedScene" uid="uid://dqt07mwljokiq" path="res://Scenes/Ui/match_result.tscn" id="5_83q14"]
 
 [node name="DataManager" type="Node2D"]
 script = ExtResource("1_f7slf")
 player_ui = ExtResource("2_hrjet")
 player_ready_label = ExtResource("3_m75cl")
 player_panel = ExtResource("4_ewpvc")
+match_result = ExtResource("5_83q14")
 packed_spawn_manager = ExtResource("3_kigss")
 packed_multiplayer_manager = ExtResource("4_c73j5")

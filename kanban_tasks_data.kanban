@@ -22,7 +22,6 @@
 			"title": "Todo",
 			"tasks": [
 				"6d435d47-99de-451f-b5f6-b14401590b77",
-				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c",
 				"79b2de1a-44b9-43af-8e08-4aff96246be3",
 				"54e510b7-5995-4095-8036-41eddbb50560",
 				"80e1d4ae-5a3a-4877-96b4-427c1402d70a",
@@ -35,13 +34,16 @@
 				"59d71995-00d0-4ffe-817f-0f7c0ca74aba",
 				"a85253b3-d405-41c3-b637-29d4f3a6220f",
 				"eeeafdeb-ef79-4ba2-a106-97e158b43dd1",
-				"ac917a93-001a-4e0f-8b3f-56197242cd02"
+				"ac917a93-001a-4e0f-8b3f-56197242cd02",
+				"7c856f26-0866-45d5-9cc5-cdfae1fcfc7d"
 			]
 		},
 		{
 			"uuid": "c17bfcdf-a7af-4917-a140-efe0a5d136d6",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"7b54be1f-b589-4127-aeb7-5aa1f84cbf0c"
+			]
 		},
 		{
 			"uuid": "8e4bca01-674a-430b-a3cf-0dd88323f592",
@@ -178,6 +180,13 @@
 			"title": "create boss AI system",
 			"description": "",
 			"category": "a07eb825-5127-44fe-a1ad-c890edad8a97",
+			"steps": []
+		},
+		{
+			"uuid": "7c856f26-0866-45d5-9cc5-cdfae1fcfc7d",
+			"title": "create button prompts that toggle for each controller if need be",
+			"description": "main UI prompts are bound to first controller used",
+			"category": "a2aac279-f1c2-4f84-98bb-502eb8aed7bc",
 			"steps": []
 		}
 	],

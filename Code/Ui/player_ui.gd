@@ -5,7 +5,6 @@ var positions:Array[Vector2] = [Vector2(8,8), Vector2(8,8), Vector2(8,8), Vector
 
 
 func _ready() -> void:
-	Debug.log("Player ui spawned")
 	Signals.BrawlerReady.connect(_build_player_panel)
 
 
@@ -36,3 +35,5 @@ func _build_player_panel(player_data:PlayerData) -> void:
 				new.set_anchors_and_offsets_preset(PRESET_BOTTOM_RIGHT)
 				new.position.x -= (new.size.x/2)
 				new.position.y -= (new.size.y/2)
+
+

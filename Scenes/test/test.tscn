@@ -37,6 +37,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [node name="test" type="Node2D" groups=["level"]]
+process_mode = 1
 script = ExtResource("1_lycva")
 
 [node name="ground and walls" type="StaticBody2D" parent="."]

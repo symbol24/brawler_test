@@ -5,7 +5,6 @@ class_name SpawnManager extends Node2D
 
 var spawn_points:Array[SpawnPoint] = []
 var spawned_brawlers:Array[Brawler] = []
-var level:Level
 
 
 func _ready() -> void:
@@ -43,7 +42,7 @@ func _spawn_one_player(_data:PlayerData) -> void:
 		spawned_brawlers.append(new_brawler)
 		new_brawler.set_state(Brawler.State.RESPAWN)
 		Signals.BrawlerReady.emit(_data)
-		Debug.log("Brawler %s ready." % new_brawler.name)
+		#Debug.log("Brawler %s ready." % new_brawler.name)
 	else:
 		Debug.warning("Player with id %d and selected character %s not spawned due to missing Brawler Data." % [_data.player_id, _data.brawler_id])
 

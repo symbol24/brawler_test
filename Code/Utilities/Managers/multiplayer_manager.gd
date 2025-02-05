@@ -10,7 +10,7 @@ var waiting_for_input:bool = false
 
 func _input(event: InputEvent) -> void:
 	if waiting_for_input:
-		if event.is_action_pressed("jump"):
+		if event.is_action_pressed("ui_accept"):
 			#Debug.log("Device id pressed: ", event.device)
 			if not is_device_in_use(event.device):
 				_setup_new_player(event.device)

@@ -31,6 +31,8 @@ var current_life_count:int = -1:
 		if current_life_count < 0: current_life_count = 0
 		Signals.UpdatePlayerLifeCount.emit(self)
 var is_alive:bool = true
+var is_fully_dead:bool:
+	get: return current_life_count <= 0
 
 
 func setup_brawler() -> void:

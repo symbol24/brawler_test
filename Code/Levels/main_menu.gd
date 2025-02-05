@@ -13,12 +13,12 @@ func _input(event: InputEvent) -> void:
 			_play()
 
 
-
 func _ready() -> void:
 	super()
 	Signals.PlayerReady.connect(_check_player_ready)
 	Signals.MPMReady.connect(_send_mpm_input)
 	Manager.load_mpm()
+	Manager.spawn_manager.spawn_all_players()
 
 
 func _send_mpm_input() -> void:

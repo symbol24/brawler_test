@@ -5,6 +5,7 @@ class_name DataManager extends Node2D
 @export var player_ui:PackedScene
 @export var player_ready_label:PackedScene
 @export var player_panel:PackedScene
+@export var match_result:PackedScene
 
 
 @export_category("Levels")
