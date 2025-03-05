@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://nbw5y4006u8t"]
 
-[ext_resource type="Script" path="res://Code/Ui/player_ui.gd" id="1_gep4t"]
+[ext_resource type="Script" uid="uid://bufhe02y8cqq5" path="res://Code/Ui/player_ui.gd" id="1_gep4t"]
 
 [node name="PlayerUi" type="Control"]
 custom_minimum_size = Vector2(432, 240)

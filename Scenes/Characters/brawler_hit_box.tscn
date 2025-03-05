@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmskyxi7l14x8"]
 
-[ext_resource type="Script" path="res://Code/Characters/brawler_hit_box.gd" id="1_e3m1x"]
+[ext_resource type="Script" uid="uid://bshux656dciab" path="res://Code/Characters/brawler_hit_box.gd" id="1_e3m1x"]
 
 [node name="BrawlerHitBox" type="Area2D"]
 collision_layer = 2

@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=4 uid="uid://mtf220m26y8e"]
 
-[ext_resource type="Script" path="res://Code/Levels/main_menu.gd" id="1_8xmd1"]
+[ext_resource type="Script" uid="uid://d10s1bu48fdx2" path="res://Code/Levels/main_menu.gd" id="1_8xmd1"]
 [ext_resource type="TileSet" uid="uid://bptlguhc8j34v" path="res://Data/debug_tileset.tres" id="1_tccyf"]
 [ext_resource type="PackedScene" uid="uid://dfr2dccyaojwf" path="res://Scenes/Utilities/spawn_point.tscn" id="2_mqxte"]
-[ext_resource type="Script" path="res://Code/Utilities/spawn_point.gd" id="3_1lxhg"]
-[ext_resource type="Script" path="res://Code/Ui/MainMenu/player_ready_point.gd" id="5_hl65m"]
-[ext_resource type="Script" path="res://Code/Utilities/ready_area.gd" id="6_kr85a"]
+[ext_resource type="Script" uid="uid://ccghvrydosj7b" path="res://Code/Utilities/spawn_point.gd" id="3_1lxhg"]
+[ext_resource type="Script" uid="uid://ba1s5ipyr3tyh" path="res://Code/Ui/MainMenu/player_ready_point.gd" id="5_hl65m"]
+[ext_resource type="Script" uid="uid://d1f52i475aloi" path="res://Code/Utilities/ready_area.gd" id="6_kr85a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyaf7"]
 size = Vector2(432, 16)

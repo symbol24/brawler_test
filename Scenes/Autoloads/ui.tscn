@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf5i8la277xh3"]
 
-[ext_resource type="Script" path="res://Code/Autoloads/ui.gd" id="1_jknin"]
-[ext_resource type="Script" path="res://Code/Debug/debug_ui.gd" id="2_80re1"]
+[ext_resource type="Script" uid="uid://dhqly63lsjnp1" path="res://Code/Autoloads/ui.gd" id="1_jknin"]
+[ext_resource type="Script" uid="uid://le5so8b1q3qi" path="res://Code/Debug/debug_ui.gd" id="2_80re1"]
 [ext_resource type="PackedScene" uid="uid://ypvtmkshfvsp" path="res://Scenes/Debug/debug_command_menu.tscn" id="3_61nc4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uh0nd"]

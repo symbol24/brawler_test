@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=4 uid="uid://b1osd6rlyak8w"]
 
-[ext_resource type="Script" path="res://Code/Levels/play_level.gd" id="1_lycva"]
+[ext_resource type="Script" uid="uid://ccy1rxtqidnpu" path="res://Code/Levels/play_level.gd" id="1_lycva"]
 [ext_resource type="TileSet" uid="uid://bptlguhc8j34v" path="res://Data/debug_tileset.tres" id="1_w54tg"]
-[ext_resource type="Script" path="res://Code/Utilities/spawn_point.gd" id="2_710rw"]
+[ext_resource type="Script" uid="uid://ccghvrydosj7b" path="res://Code/Utilities/spawn_point.gd" id="2_710rw"]
 [ext_resource type="PackedScene" uid="uid://dfr2dccyaojwf" path="res://Scenes/Utilities/spawn_point.tscn" id="2_bx1yv"]
 [ext_resource type="PackedScene" uid="uid://d2yfuxiu3ef7y" path="res://Scenes/Utilities/Managers/spawn_manager.tscn" id="4_nst7e"]
 

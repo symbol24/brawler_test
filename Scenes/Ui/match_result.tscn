@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqt07mwljokiq"]
 
-[ext_resource type="Script" path="res://Code/Ui/match_result.gd" id="1_1vqvc"]
+[ext_resource type="Script" uid="uid://b3aay4u4pwllf" path="res://Code/Ui/match_result.gd" id="1_1vqvc"]
 
 [node name="MatchResult" type="Control"]
 custom_minimum_size = Vector2(432, 240)
